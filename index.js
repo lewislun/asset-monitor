@@ -1,20 +1,23 @@
 'use strict'
 
-import { SolanaNativeTokenScanner, SolanaSecondaryTokenScanner } from './lib/asset-scanners/index.js'
-import logger from './lib/logger.js'
+import * as lib from './lib/index.js'
 
 const solanaRpcUrl = 'https://api.mainnet-beta.solana.com'
 
-const solanaNativeTokenScanner = new SolanaNativeTokenScanner(solanaRpcUrl)
-const solanaSecondaryTokenScanner = new SolanaSecondaryTokenScanner(solanaRpcUrl)
+// Price scanners and aggregator
+const priceAggregator = new lib.PriceAggregator()
+priceAggregator.addPriceScanner(new lib.CoinGeckoPriceScanner())
 
-const assetResults = [
-	...await solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
-	...await solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
-]
+const solanaNativeTokenScanner = new lib.SolanaNativeTokenScanner(priceAggregator, solanaRpcUrl)
+const solanaSecondaryTokenScanner = new lib.SolanaSecondaryTokenScanner(priceAggregator, solanaRpcUrl)
 
-for (const result of assetResults) {
-	logger.info(JSON.stringify(result, undefined, 2))
+const queryResults = await Promise.all([
+	solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	// solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+])
+const assetResults = queryResults.flat()
+for (let assetResult of assetResults) {
+	lib.logger.info(JSON.stringify(assetResult, undefined, 2))
 }
 
-logger.info("DONE")
+lib.logger.info("DONE")
