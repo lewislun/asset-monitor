@@ -1,0 +1,16 @@
+{
+  "name": "web3-asset-profiler",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {},
+  "author": "Lewis Cheung",
+  "license": "GPL",
+  "dependencies": {
+    "@solana/spl-token-registry": "^0.2.4574",
+    "@solana/web3.js": "^1.70.0",
+    "decimal.js": "^10.4.3",
+    "winston": "^3.8.2"
+  }
+}
