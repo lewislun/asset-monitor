@@ -1,5 +1,6 @@
 'use strict'
 
+import Decimal from 'decimal.js'
 import * as lib from './lib/index.js'
 
 const solanaRpcUrl = 'https://api.mainnet-beta.solana.com'
@@ -13,11 +14,14 @@ const solanaSecondaryTokenScanner = new lib.SolanaSecondaryTokenScanner(priceAgg
 
 const queryResults = await Promise.all([
 	solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
-	// solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
 ])
 const assetResults = queryResults.flat()
+let totalUSDValue = new Decimal(0)
 for (let assetResult of assetResults) {
 	lib.logger.info(JSON.stringify(assetResult, undefined, 2))
+	totalUSDValue = totalUSDValue.add(assetResult.usdValue)
 }
 
+lib.logger.info(`Total USD Value: $${totalUSDValue}`)
 lib.logger.info("DONE")
