@@ -14,7 +14,9 @@ const solanaSecondaryTokenScanner = new lib.SolanaSecondaryTokenScanner(priceAgg
 
 const queryResults = await Promise.all([
 	solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	solanaNativeTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
 	solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	solanaSecondaryTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
 ])
 const assetResults = queryResults.flat()
 let totalUSDValue = new Decimal(0)
