@@ -8,13 +8,17 @@
   "author": "Lewis Cheung",
   "license": "GPL",
   "dependencies": {
-    "@solana/spl-token-registry": "^0.2.4574",
+    "@orca-so/whirlpools-sdk": "^0.7.2",
+    "@project-serum/anchor": "^0.25.0",
+    "@solana/spl-token-registry": "^0.2.7",
     "@solana/web3.js": "^1.70.0",
+    "bn.js": "^5.2.1",
     "coingecko-api": "^1.0.10",
     "decimal.js": "^10.4.3",
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@types/bn.js": "^5.1.1",
     "@types/coingecko-api": "^1.0.10"
   }
 }

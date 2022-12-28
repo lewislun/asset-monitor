@@ -11,12 +11,14 @@ priceAggregator.addPriceScanner(new lib.CoinGeckoPriceScanner())
 
 const solanaNativeTokenScanner = new lib.SolanaNativeTokenScanner(priceAggregator, solanaRpcUrl)
 const solanaSecondaryTokenScanner = new lib.SolanaSecondaryTokenScanner(priceAggregator, solanaRpcUrl)
+const orcaWhirlpoolScanner = new lib.OrcaWhirlpoolScanner(priceAggregator, solanaRpcUrl)
 
 const queryResults = await Promise.all([
-	solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
-	solanaNativeTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
-	solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
-	solanaSecondaryTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
+	// solanaNativeTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	// solanaNativeTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
+	// solanaSecondaryTokenScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
+	// solanaSecondaryTokenScanner.query({ addr: 'JE2jJeRTyjV34oHhwMYVZaaQ5syeakFVbDGxcNzW9fsg' }),
+	orcaWhirlpoolScanner.query({ addr: 'AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE' }),
 ])
 const assetResults = queryResults.flat()
 let totalUSDValue = new Decimal(0)
