@@ -3,8 +3,12 @@
 import Decimal from 'decimal.js'
 import * as lib from './lib/index.js'
 
-const solanaRpcUrl = 'https://api.mainnet-beta.solana.com'
+const solanaRpcUrl = 'https://rpc.ankr.com/solana'
 const ethereumRpcUrl = 'https://rpc.ankr.com/eth'
+
+// instantiate rate limiters
+new lib.RateLimiter({ instanceKey: solanaRpcUrl, callPerSec: 1800/60 })
+new lib.RateLimiter({ instanceKey: ethereumRpcUrl, callPerSec: 1800/60 })
 
 // Price scanners and aggregator
 const priceAggregator = new lib.PriceAggregator()
@@ -28,7 +32,7 @@ const queryResults = await Promise.all([
 const assetResults = queryResults.flat()
 let totalUSDValue = new Decimal(0)
 for (let assetResult of assetResults) {
-	lib.logger.info(JSON.stringify(assetResult, undefined, 2))
+	// lib.logger.info(JSON.stringify(assetResult, undefined, 2))
 	totalUSDValue = totalUSDValue.add(assetResult.usdValue)
 }
 
