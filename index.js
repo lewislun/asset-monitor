@@ -7,8 +7,8 @@ const solanaRpcUrl = 'https://rpc.ankr.com/solana'
 const ethereumRpcUrl = 'https://rpc.ankr.com/eth'
 
 // instantiate rate limiters
-new lib.RateLimiter({ instanceKey: solanaRpcUrl, callPerSec: 1800/60 })
-new lib.RateLimiter({ instanceKey: ethereumRpcUrl, callPerSec: 1800/60 })
+new lib.RateLimiter({ instanceKey: solanaRpcUrl, callPerSec: 100 })
+new lib.RateLimiter({ instanceKey: ethereumRpcUrl, callPerSec: 100 })
 
 // Price scanners and aggregator
 const priceAggregator = new lib.PriceAggregator()
@@ -38,3 +38,4 @@ for (let assetResult of assetResults) {
 
 lib.logger.info(`Total USD Value: $${totalUSDValue}`)
 lib.logger.info("DONE")
+process.exit(0)
