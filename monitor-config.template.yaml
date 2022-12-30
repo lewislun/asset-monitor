@@ -1,0 +1,16 @@
+# Queries (scannerName format: <type>@<chain>)
+queries:
+  - scannerName: ethereum-native@ethereum
+    addr: '0xdADCBbC7163F46De908DeDF05a7DD68fA53c2311'
+  - scannerName: ethereum-secondary@ethereum
+    addr: '0xdADCBbC7163F46De908DeDF05a7DD68fA53c2311'
+  - scannerName: ethereum-native@avalanche-c
+    addr: '0xdADCBbC7163F46De908DeDF05a7DD68fA53c2311'
+  - scannerName: solana-native@solana
+    addr: AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE
+  - scannerName: solana-secondary@solana
+    addr: AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE
+  - scannerName: orca-whirlpool@solana
+    addr: AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE
+
+# TODO: interval (cron?)

@@ -3,3 +3,9 @@
 
 # vscode
 /.vscode
+
+# configs
+/monitor-config*.yaml
+!/monitor-config.template.yaml
+/scanners-config*.yaml
+!/scanners-config.default.yaml

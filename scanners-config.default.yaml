@@ -1,0 +1,60 @@
+# Define rate limits for each endpoints.
+rateLimiters:
+  - key: https://rpc.ankr.com/eth
+    callPerSec: 100
+  - key: https://rpc.ankr.com/solana
+    callPerSec: 100
+  - key: https://rpc.ankr.com/avalanche
+    callPerSec: 100
+
+# Asset info map
+assetInfoMapByChain:
+  ethereum:
+    stETH: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84'
+    USDC: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+    USDT: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  solana:
+    MNDE: MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey
+    ORCA: orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE
+    RAY: 4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R
+    mSOL: mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So
+    wSOL: So11111111111111111111111111111111111111112
+    USDC: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+    USDT: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+
+# Define asset scanners
+assetScanners:
+  # Ethereum
+  - type: ethereum-native
+    chain: ethereum
+    params:
+      endpoint: https://rpc.ankr.com/eth
+  - type: ethereum-secondary
+    chain: ethereum
+    params:
+      endpoint: https://rpc.ankr.com/eth
+  # Avalanche C-Chain
+  - type: ethereum-native
+    chain: avalanche-c
+    params:
+      endpoint: https://rpc.ankr.com/avalanche
+  # Solana
+  - type: solana-native
+    chain: solana
+    params:
+      endpoint: https://rpc.ankr.com/solana
+  - type: solana-secondary
+    chain: solana
+    params:
+      endpoint: https://rpc.ankr.com/solana
+  - type: orca-whirlpool
+    chain: solana
+    params:
+      endpoint: https://rpc.ankr.com/solana
+
+# TODO: price scanner config?
+# priceScanners:
+#   - type: magic-eden
+#     endpoint: dummy
+#     opts:
+#       strategy: average
