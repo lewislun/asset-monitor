@@ -6,9 +6,8 @@ import * as lib from './lib/index.js'
 
 const assetMonitor = new lib.AssetMonitor()
 const queryResults = await assetMonitor.scanOnce()
-const assetResults = queryResults.flat()
 let totalUSDValue = new Decimal(0)
-for (let assetResult of assetResults) {
+for (let assetResult of queryResults) {
 	lib.logger.info(JSON.stringify(assetResult, undefined, 2))
 	totalUSDValue = totalUSDValue.add(assetResult.usdValue)
 }
