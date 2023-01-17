@@ -17,6 +17,7 @@ export async function up(knex) {
 		t.increments('id').primary()
 		t.integer('batch_id').notNullable().unsigned().index()
 		t.string('code', 255).notNullable().index()
+		t.string('chain', 255).notNullable().index()
 		t.string('type', 255).notNullable().index()
 		t.string('name', 255).notNullable().index()
 		t.string('state', 255).notNullable().index()
