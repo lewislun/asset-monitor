@@ -16,6 +16,9 @@
     "coingecko-api": "^1.0.10",
     "decimal.js": "^10.4.3",
     "js-yaml": "^4.1.0",
+    "knex": "^2.4.0",
+    "objection": "^3.0.1",
+    "pg": "^8.8.0",
     "web3": "^1.8.1",
     "winston": "^3.8.2"
   },

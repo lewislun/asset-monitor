@@ -9,3 +9,6 @@
 !/monitor-config.template.yaml
 /scanners-config*.yaml
 !/scanners-config.default.yaml
+
+# knex
+/knexfile.js

@@ -7,7 +7,7 @@ rateLimiters:
   - key: https://rpc.ankr.com/avalanche
     callPerSec: 100
 
-# Asset info map
+# Asset info map (asset info' structure is chain-specific)
 assetInfoMapByChain:
   ethereum:
     stETH: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84'
