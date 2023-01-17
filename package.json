@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "cli": "node cli/index.js"
+  },
   "author": "Lewis Cheung",
   "license": "GPL",
   "dependencies": {
@@ -14,6 +16,7 @@
     "@solana/web3.js": "^1.70.0",
     "bn.js": "^5.2.1",
     "coingecko-api": "^1.0.10",
+    "commander": "^10.0.0",
     "decimal.js": "^10.4.3",
     "js-yaml": "^4.1.0",
     "knex": "^2.4.0",
