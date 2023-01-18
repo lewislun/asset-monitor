@@ -28,6 +28,8 @@ cmd
 		}
 
 		logger.info("DONE")
+		await assetMonitor.close()
+		process.exit(0)
 	})
 
 export default cmd
