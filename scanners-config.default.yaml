@@ -6,6 +6,14 @@ rateLimiters:
     callPerSec: 100
   - key: https://rpc.ankr.com/avalanche
     callPerSec: 100
+  - key: https://cosmos-rpc.quickapi.com
+    callPerSec: 10
+  - key: https://evmos-rpc.polkachu.com
+    callPerSec: 10
+  - key: https://juno-rpc.polkachu.com
+    callPerSec: 10
+  - key: https://rpc.stargaze-apis.com
+    callPerSec: 10
 
 # Asset info map (asset info' structure is chain-specific)
 assetInfoMapByChain:
@@ -25,6 +33,16 @@ assetInfoMapByChain:
 
 # Define asset scanners
 assetScanners:
+  # Avalanche C-Chain
+  - type: ethereum-native
+    chain: avalanche-c
+    params:
+      endpoint: https://rpc.ankr.com/avalanche
+  # Cosmoshub
+  - type: cosmos-native
+    chain: cosmoshub
+    params:
+      endpoint: https://cosmos-rpc.quickapi.com
   # Ethereum
   - type: ethereum-native
     chain: ethereum
@@ -34,11 +52,21 @@ assetScanners:
     chain: ethereum
     params:
       endpoint: https://rpc.ankr.com/eth
-  # Avalanche C-Chain
-  - type: ethereum-native
-    chain: avalanche-c
+  # Evmos
+  - type: cosmos-native
+    chain: evmos
     params:
-      endpoint: https://rpc.ankr.com/avalanche
+      endpoint: https://evmos-rpc.polkachu.com
+  # Juno
+  - type: cosmos-native
+    chain: juno
+    params:
+      endpoint: https://juno-rpc.polkachu.com
+  # Juno
+  - type: cosmos-native
+    chain: stargaze
+    params:
+      endpoint: https://rpc.stargaze-apis.com
   # Solana
   - type: solana-native
     chain: solana

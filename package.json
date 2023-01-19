@@ -10,6 +10,9 @@
   "author": "Lewis Cheung",
   "license": "GPL",
   "dependencies": {
+    "@cosmjs/cosmwasm-stargate": "^0.29.5",
+    "@cosmjs/stargate": "^0.29.5",
+    "@cosmjs/tendermint-rpc": "^0.29.5",
     "@orca-so/whirlpools-sdk": "^0.7.2",
     "@project-serum/anchor": "^0.25.0",
     "@solana/spl-token-registry": "^0.2.7",
