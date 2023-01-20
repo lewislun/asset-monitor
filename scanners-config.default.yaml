@@ -30,6 +30,11 @@ assetScanners:
     chain: avalanche-c
     params:
       endpoint: https://rpc.ankr.com/avalanche
+  # Comdex
+  - type: cosmos-native
+    chain: comdex
+    params:
+      endpoint: https://comdex-rpc.polkachu.com
   # Cosmoshub
   - type: cosmos-native
     chain: cosmos-hub
