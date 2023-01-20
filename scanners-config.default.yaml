@@ -13,6 +13,8 @@ assetInfoMapByChain:
     stETH: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84'
     USDC: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
     USDT: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  juno:
+    GLTO: juno1j0a9ymgngasfn3l5me8qpd53l5zlm9wurfdk7r65s5mg6tkxal3qpgf5se
   solana:
     KI: kiGenopAScF8VF31Zbtx2Hg8qA5ArGqvnVtXb83sotc
     MNDE: MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey
@@ -56,6 +58,10 @@ assetScanners:
       endpoint: https://evmos-rpc.polkachu.com
   # Juno
   - type: cosmos-native
+    chain: juno
+    params:
+      endpoint: https://juno-rpc.polkachu.com
+  - type: cosmos-secondary
     chain: juno
     params:
       endpoint: https://juno-rpc.polkachu.com
