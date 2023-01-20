@@ -1,7 +1,6 @@
 'use strict'
 
 import { Command } from 'commander'
-import Decimal from 'decimal.js'
 
 import * as lib from '../lib/index.js'
 
@@ -11,7 +10,10 @@ const logger = lib.createLogger('CLI')
 cmd
 	.description('Scan and print assets from all sources once.')
 	.option('-s, --save', 'save results to database', false)
-	.action(async ({ save }) => {
+	.option('-d, --debug', 'log debug', false)
+	.action(async ({ save, debug }) => {
+		if (debug) lib.setLogLevel('debug')
+
 		const assetMonitor = new lib.AssetMonitor()
 		const { queryResults, totalUSDValue } = await assetMonitor.scan()
 		queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
