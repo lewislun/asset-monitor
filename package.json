@@ -10,6 +10,7 @@
   "author": "Lewis Cheung",
   "license": "GPL",
   "dependencies": {
+    "@blockfrost/blockfrost-js": "^5.2.0",
     "@cosmjs/cosmwasm-stargate": "^0.29.5",
     "@cosmjs/stargate": "^0.29.5",
     "@cosmjs/tendermint-rpc": "^0.29.5",
@@ -18,6 +19,7 @@
     "@solana/spl-token-registry": "^0.2.7",
     "@solana/web3.js": "^1.70.0",
     "ajv-formats": "^2.1.1",
+    "bech32": "^2.0.0",
     "bn.js": "^5.2.1",
     "coingecko-api": "^1.0.10",
     "commander": "^10.0.0",

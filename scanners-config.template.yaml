@@ -34,6 +34,11 @@ assetScanners:
     chain: avalanche-c
     params:
       endpoint: https://rpc.ankr.com/avalanche
+  # Cardano
+  - type: cardano-native
+    chain: cardano
+    params:
+      apiKey: <blockfrost-api-key>
   # Comdex
   - type: cosmos-native
     chain: comdex
