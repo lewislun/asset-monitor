@@ -1,19 +1,19 @@
 'use strict'
 
-import { AssetHistory, AssetHistoryBatch } from '../../lib/index.js'
+import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag } from '../../lib/index.js'
 
 /**
  * @param {import('knex').Knex} knex
  * @returns {Promise<void>}
  */
 export async function up(knex) {
-	await knex.schema.createTable(AssetHistoryBatch.tableName, t => {
+	await knex.schema.createTable(AssetSnapshotBatch.tableName, t => {
 		t.increments('id').primary()
 		t.decimal('total_usd_value', 15, 6).notNullable()
 		t.timestamp('captured_at').notNullable()
 	})
 
-	await knex.schema.createTable(AssetHistory.tableName, t => {
+	await knex.schema.createTable(AssetSnapshot.tableName, t => {
 		t.increments('id').primary()
 		t.integer('batch_id').notNullable().unsigned().index()
 		t.string('code', 255).notNullable().index()
@@ -28,7 +28,19 @@ export async function up(knex) {
 
 		t.foreign('batch_id')
 			.references('id')
-			.inTable(AssetHistoryBatch.tableName)
+			.inTable(AssetSnapshotBatch.tableName)
+	})
+
+	await knex.schema.createTable(AssetSnapshotTag.tableName, t => {
+		t.increments('id').primary()
+		t.integer('snapshot_id').notNullable().unsigned().index()
+		t.string('category', 255).notNullable().index()
+		t.string('name', 255).notNullable().index()
+
+		t.unique(['snapshot_id', 'category'])
+		t.foreign('snapshot_id')
+			.references('id')
+			.inTable(AssetSnapshot.tableName)
 	})
 }
 
@@ -37,6 +49,7 @@ export async function up(knex) {
  * @returns {Promise<void>}
  */
 export async function down(knex) {
-  await knex.schema.dropTableIfExists(AssetHistory.tableName)
-  await knex.schema.dropTableIfExists(AssetHistoryBatch.tableName)
+	await knex.schema.dropTableIfExists(AssetSnapshotTag.tableName)
+	await knex.schema.dropTableIfExists(AssetSnapshot.tableName)
+	await knex.schema.dropTableIfExists(AssetSnapshotBatch.tableName)
 }

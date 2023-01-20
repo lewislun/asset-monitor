@@ -23,7 +23,7 @@ cmd
 		logger.info(`Total USD Value: $${totalUSDValue}`)
 
 		if (save) {
-			const batch = await lib.AssetHistoryBatch.storeResults(queryResults)
+			const batch = await lib.AssetSnapshotBatch.storeResults(queryResults)
 			logger.info(`Results stored to DB - batchId: ${batch.id}`)
 		}
 
