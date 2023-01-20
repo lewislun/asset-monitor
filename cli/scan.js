@@ -13,16 +13,12 @@ cmd
 	.option('-s, --save', 'save results to database', false)
 	.action(async ({ save }) => {
 		const assetMonitor = new lib.AssetMonitor()
-		const queryResults = await assetMonitor.scanOnce()
-		let totalUSDValue = new Decimal(0)
-		for (let assetResult of queryResults) {
-			logger.info(JSON.stringify(assetResult, undefined, 2))
-			totalUSDValue = totalUSDValue.add(assetResult.usdValue)
-		}
-
+		const { queryResults, totalUSDValue } = await assetMonitor.scan()
+		queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
 		logger.info(`Total USD Value: $${totalUSDValue}`)
 
 		if (save) {
+			logger.info(`Storeing results to DB - resultCount: ${queryResults.length}`)
 			const batch = await lib.AssetSnapshotBatch.storeResults(queryResults)
 			logger.info(`Results stored to DB - batchId: ${batch.id}`)
 		}
