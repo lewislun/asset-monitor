@@ -1,5 +1,7 @@
 # Define rate limits for each endpoints.
 rateLimiters:
+  - key: coin-gecko
+    callPerSec: 0.1
   - key: https://rpc.ankr.com/eth
     callPerSec: 100
   - key: https://rpc.ankr.com/solana
@@ -104,9 +106,41 @@ assetScanners:
     params:
       endpoint: https://rpc.ankr.com/solana
 
-# TODO: price scanner config?
-# priceScanners:
-#   - type: magic-eden
-#     endpoint: dummy
-#     opts:
-#       strategy: average
+# Define price scanners
+priceScanners:
+  - type: coin-gecko
+    coinIdByCode:
+      ATOM: cosmos
+      AVAX: avalanche-2
+      BTC: bitcoin
+      CMDX: comdex
+      ETH: ethereum
+      stETH: staked-ether
+      EVMOS: evmos
+      JUNO: juno-network
+      KI: genopet-ki
+      MNDE: marinade
+      ORCA: orca
+      OSMO: osmosis
+      RAY: raydium
+      REBUS: rebus
+      ROWAN: sifchain
+      SCRT: secret
+      SOL: solana
+      mSOL: msol
+      wSOL: wrapped-solana
+      STARS: stargaze
+      USDC: usd-coin
+      USDT: tether
+  - type: live-coin-watch
+    params:
+      endpoint: https://api.livecoinwatch.com
+      apiKey: <api-key>
+    coinIdByCode:
+      ATOM: ATOM
+      BNB: BNB
+      BTC: BTC
+      ETH: ETH
+      EVMOS: EVMOS
+      GLTO: GLTO
+      SOL: SOL

@@ -8,7 +8,7 @@
 /monitor-config*.yaml
 !/monitor-config.template.yaml
 /scanners-config*.yaml
-!/scanners-config.default.yaml
+!/scanners-config.template.yaml
 
 # knex
 /knexfile.js
