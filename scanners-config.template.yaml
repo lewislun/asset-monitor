@@ -109,7 +109,7 @@ assetScanners:
 # Define price scanners
 priceScanners:
   - type: coin-gecko
-    coinIdByCode:
+    assetIdByCode:
       ATOM: cosmos
       AVAX: avalanche-2
       BTC: bitcoin
@@ -136,7 +136,7 @@ priceScanners:
     params:
       endpoint: https://api.livecoinwatch.com
       apiKey: <api-key>
-    coinIdByCode:
+    assetIdByCode:
       ATOM: ATOM
       BNB: BNB
       BTC: BTC
