@@ -27,6 +27,7 @@
     "install": "^0.13.0",
     "js-yaml": "^4.1.0",
     "knex": "^2.4.0",
+    "node-cron": "^3.0.2",
     "node-fetch": "^3.3.0",
     "npm": "^9.3.0",
     "objection": "^3.0.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/bn.js": "^5.1.1",
     "@types/coingecko-api": "^1.0.10",
-    "@types/js-yaml": "^4.0.5"
+    "@types/js-yaml": "^4.0.5",
+    "@types/node-cron": "^3.0.7"
   }
 }
