@@ -8,6 +8,8 @@ rateLimiters:
     callPerSec: 100
   - key: https://rpc.ankr.com/avalanche
     callPerSec: 100
+  - key: bybit
+    callPerSec: 20
 
 # Asset info map (asset info' structure is chain-specific)
 assetInfoMapByChain:
@@ -59,6 +61,8 @@ assetScanners:
   # bybit
   - type: bybit
     chain: bybit
+    params:
+      rateLimiterKey: bybit
   # Cardano
   - type: cardano-native
     chain: cardano
@@ -139,6 +143,8 @@ assetScanners:
 # Define price scanners
 priceScanners:
   - type: coin-gecko
+    params:
+      rateLimiterKey: coin-gecko
     assetIdByCode:
       ADA: cardano
       ALGO: algorand
