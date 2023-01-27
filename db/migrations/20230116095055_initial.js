@@ -10,7 +10,8 @@ export async function up(knex) {
 	await knex.schema.createTable(AssetSnapshotBatch.tableName, t => {
 		t.increments('id').primary()
 		t.decimal('total_usd_value', 15, 6).notNullable()
-		t.timestamp('captured_at').notNullable()
+		t.timestamp('scan_started_at').notNullable()
+		t.timestamp('scan_finished_at').notNullable()
 	})
 
 	await knex.schema.createTable(AssetSnapshot.tableName, t => {
