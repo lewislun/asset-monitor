@@ -4,11 +4,11 @@
 # vscode
 /.vscode
 
-# configs
+# configs and secrets
 /monitor-config*.yaml
 !/monitor-config.template.yaml
-/scanners-config*.yaml
-!/scanners-config.template.yaml
+/secrets*.yaml
+!/secrets.template.yaml
 
 # knex
 /knexfile.js

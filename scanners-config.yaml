@@ -84,17 +84,18 @@ assetScanners:
   - type: cardano-native
     chain: cardano
     params:
-      apiKey: <blockfrost-api-key>
+      apiKey: '{{cardanoBlockFrostApiKey}}'
   # Comdex
   - type: cosmos-native
     chain: comdex
     params:
       endpoint: https://comdex-rpc.polkachu.com
-  # Cosmoshub
+  # Cosmos Hub
   - type: cosmos-native
     chain: cosmos-hub
     params:
-      endpoint: https://cosmoshub.validator.network
+      assetCode: ATOM
+      endpoint: https://cosmos-mainnet-rpc.allthatnode.com:26657
   # Ethereum
   - type: ethereum-native
     chain: ethereum
@@ -113,11 +114,11 @@ assetScanners:
   - type: cosmos-native
     chain: juno
     params:
-      endpoint: https://juno-rpc.polkachu.com
+      endpoint: https://rpc-juno.whispernode.com
   - type: cosmos-secondary
     chain: juno
     params:
-      endpoint: https://juno-rpc.polkachu.com
+      endpoint: https://rpc-juno.whispernode.com
   # Osmosis
   - type: cosmos-native
     chain: osmosis
@@ -201,7 +202,7 @@ priceScanners:
   - type: live-coin-watch
     params:
       endpoint: https://api.livecoinwatch.com
-      apiKey: <api-key>
+      apiKey: '{{liveCoinWatchApiKey}}'
     assetIdByCode:
       ADA: ADA
       ALGO: ALGO
