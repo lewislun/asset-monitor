@@ -12,11 +12,11 @@ cmd
 	.option('-s, --save', 'save results to database', false)
 	.option('-d, --debug', 'log debug', false)
 	.option('-S, --scanner-config <path>', 'path to the scanner config')
-	.option('-M, --monitor-config <path>', 'path to the monitor config')
-	.action(async ({ save, debug, monitorConfig, scannerConfig }) => {
+	.option('-Q, --query-config <path>', 'path to the query config')
+	.action(async ({ save, debug, queryConfig, scannerConfig }) => {
 		if (debug) lib.setLogLevel('debug')
 
-		const assetMonitor = new lib.AssetMonitor({ monitorConfigPath: monitorConfig, scannerConfigPath: scannerConfig })
+		const assetMonitor = new lib.AssetMonitor({ queryConfigPath: queryConfig, scannerConfigPath: scannerConfig })
 		const { queryResults, totalUSDValue } = await assetMonitor.scan()
 		queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
 		logger.info(`Total USD Value: $${totalUSDValue}`)

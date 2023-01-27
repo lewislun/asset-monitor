@@ -12,5 +12,3 @@ queries:
     addr: AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE
   - scannerName: orca-whirlpool@solana
     addr: AymfDSzZeeLK5Nf3wbghVxWLUwgFgfCFadsb1W2Yk7TE
-
-# TODO: interval (cron?)

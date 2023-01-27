@@ -5,8 +5,8 @@
 /.vscode
 
 # configs and secrets
-/monitor-config*.yaml
-!/monitor-config.template.yaml
+/query-config*.yaml
+!/query-config.template.yaml
 /secrets*.yaml
 !/secrets.template.yaml
 
