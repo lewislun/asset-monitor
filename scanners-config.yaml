@@ -89,7 +89,7 @@ assetScanners:
   - type: cosmos-native
     chain: comdex
     params:
-      endpoint: https://comdex-rpc.polkachu.com
+      endpoint: https://rpc.comdex.one
   # Cosmos Hub
   - type: cosmos-native
     chain: cosmos-hub
