@@ -7,6 +7,8 @@ rateLimiters:
 
 # Asset Identifiers (value is defined by the nature of the platform)
 assetIdByCodeByChain:
+  avalanche-c:
+    AVAX: __NATIVE__
   bybit:
     ADA: ADA
     ALGO: ALGO
@@ -29,15 +31,32 @@ assetIdByCodeByChain:
     USDC: USDC
     USDT: USDT
     XRP: XRP
+  cardano:
+    ADA: __NATIVE__
+  comdex:
+    CMDX: __NATIVE__
+  cosmos-hub:
+    ATOM: __NATIVE__
   ethereum:
+    ETH: __NATIVE__
     stETH: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84'
     USDC: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
     USDT: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  evmos:
+    EVMOS: __NATIVE__
   juno:
+    JUNO: __NATIVE__
     GLTO: juno1j0a9ymgngasfn3l5me8qpd53l5zlm9wurfdk7r65s5mg6tkxal3qpgf5se
+  osmosis:
+    OSMO: __NATIVE__
+  rebus:
+    REBUS: __NATIVE__
+  secret-network:
+    SCRT: __NATIVE__
   sifchain:
     ROWAN: __NATIVE__
   solana:
+    SOL: __NATIVE__
     KI: kiGenopAScF8VF31Zbtx2Hg8qA5ArGqvnVtXb83sotc
     MNDE: MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey
     ORCA: orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE
@@ -46,6 +65,8 @@ assetIdByCodeByChain:
     wSOL: So11111111111111111111111111111111111111112
     USDC: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
     USDT: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+  stargaze:
+    STARS: __NATIVE__
 
 # Define asset scanners
 assetScanners:
