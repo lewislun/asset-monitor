@@ -11,12 +11,13 @@ cmd
 	.description('Scan and print assets from all sources once.')
 	.option('-s, --save', 'save results to database', false)
 	.option('-d, --debug', 'log debug', false)
-	.option('-S, --scanner-config <path>', 'path to the scanner config')
-	.option('-Q, --query-config <path>', 'path to the query config')
-	.action(async ({ save, debug, queryConfig, scannerConfig }) => {
+	.option('-S, --scanner-config <path>', 'path to the scanner config file')
+	.option('-Q, --query-config <path>', 'path to the query config file')
+	.option('-C, --secrets <path>', 'path to the secrets file')
+	.action(async ({ save, debug, queryConfig, scannerConfig, secrets }) => {
 		if (debug) lib.setLogLevel('debug')
 
-		const assetMonitor = new lib.AssetMonitor({ queryConfigPath: queryConfig, scannerConfigPath: scannerConfig })
+		const assetMonitor = new lib.AssetMonitor({ queryConfigPath: queryConfig, scannerConfigPath: scannerConfig, secretsPath: secrets })
 		const { queryResults, totalUSDValue } = await assetMonitor.scan()
 		queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
 		logger.info(`Total USD Value: $${totalUSDValue}`)
