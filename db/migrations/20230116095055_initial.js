@@ -25,6 +25,7 @@ export async function up(knex) {
 		t.decimal('quantity', 36, 18).notNullable()
 		t.decimal('usd_value', 15, 6).notNullable()
 		t.decimal('usd_value_per_quantity', 15, 6).notNullable()
+		t.string('account_id', 255).nullable()
 		t.timestamp('captured_at').notNullable()
 
 		t.foreign('batch_id')
