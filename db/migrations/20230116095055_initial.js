@@ -1,12 +1,18 @@
 'use strict'
 
-import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag } from '../../lib/index.js'
+import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag, AssetGroup, AssetFlow } from '../../lib/index.js'
 
 /**
  * @param {import('knex').Knex} knex
  * @returns {Promise<void>}
  */
 export async function up(knex) {
+	await knex.schema.createTable(AssetGroup.tableName, t => {
+		t.increments('id').primary()
+		t.string('name', 255).notNullable()
+		t.timestamp('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
+	})
+
 	await knex.schema.createTable(AssetSnapshotBatch.tableName, t => {
 		t.increments('id').primary()
 		t.decimal('total_usd_value', 15, 6).notNullable()
@@ -17,6 +23,7 @@ export async function up(knex) {
 	await knex.schema.createTable(AssetSnapshot.tableName, t => {
 		t.increments('id').primary()
 		t.integer('batch_id').notNullable().unsigned().index()
+		t.integer('group_id').nullable().unsigned().index()
 		t.string('code', 255).notNullable().index()
 		t.string('chain', 255).notNullable().index()
 		t.string('type', 255).notNullable().index()
@@ -31,6 +38,9 @@ export async function up(knex) {
 		t.foreign('batch_id')
 			.references('id')
 			.inTable(AssetSnapshotBatch.tableName)
+		t.foreign('group_id')
+			.references('id')
+			.inTable(AssetGroup.tableName)
 	})
 
 	await knex.schema.createTable(AssetSnapshotTag.tableName, t => {
@@ -44,6 +54,21 @@ export async function up(knex) {
 			.references('id')
 			.inTable(AssetSnapshot.tableName)
 	})
+
+	await knex.schema.createTable(AssetFlow.tableName, t => {
+		t.increments('id').primary()
+		t.integer('from_group_id').nullable().unsigned().index()
+		t.integer('to_group_id').nullable().unsigned().index()
+		t.decimal('usd_value', 15, 6).notNullable()
+		t.timestamp('executed_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
+
+		t.foreign('from_group_id')
+			.references('id')
+			.inTable(AssetGroup.tableName)
+		t.foreign('to_group_id')
+			.references('id')
+			.inTable(AssetGroup.tableName)
+	})
 }
 
 /**
@@ -54,4 +79,6 @@ export async function down(knex) {
 	await knex.schema.dropTableIfExists(AssetSnapshotTag.tableName)
 	await knex.schema.dropTableIfExists(AssetSnapshot.tableName)
 	await knex.schema.dropTableIfExists(AssetSnapshotBatch.tableName)
+	await knex.schema.dropTableIfExists(AssetFlow.tableName)
+	await knex.schema.dropTableIfExists(AssetGroup.tableName)
 }
