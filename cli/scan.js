@@ -11,13 +11,10 @@ cmd
 	.description('Scan and print assets from all sources once.')
 	.option('-s, --save', 'save results to database', false)
 	.option('-l, --list-all', 'list all query results in the terminal', false)
-	.option('-d, --debug', 'log debug', false)
 	.option('-S, --scanner-config <path>', 'path to the scanner config file')
 	.option('-Q, --query-config <path>', 'path to the query config file')
 	.option('-C, --secrets <path>', 'path to the secrets file')
-	.action(async ({ save, debug, listAll, queryConfig, scannerConfig, secrets }) => {
-		if (debug) lib.setLogLevel('debug')
-
+	.action(async ({ save, listAll, queryConfig, scannerConfig, secrets }) => {
 		const assetMonitor = new lib.AssetMonitor({ queryConfigPath: queryConfig, scannerConfigPath: scannerConfig, secretsPath: secrets })
 		const scanResult = await assetMonitor.scan()
 		if (listAll) {

@@ -9,7 +9,7 @@ import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag, AssetGroup, AssetF
 export async function up(knex) {
 	await knex.schema.createTable(AssetGroup.tableName, t => {
 		t.increments('id').primary()
-		t.string('name', 255).notNullable()
+		t.string('name', 255).notNullable().index()
 		t.timestamp('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
 	})
 
