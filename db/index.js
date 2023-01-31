@@ -1,5 +1,3 @@
-'use strict'
-
 import Knex from 'knex'
 import knexfile from '../knexfile.js'
 

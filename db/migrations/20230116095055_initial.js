@@ -1,5 +1,3 @@
-'use strict'
-
 import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag, AssetGroup, AssetFlow } from '../../lib/index.js'
 
 /**

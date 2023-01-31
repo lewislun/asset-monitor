@@ -8,7 +8,7 @@ const cmd = new Command('scan')
 const logger = lib.createLogger('CLI')
 
 cmd
-	.description('Scan and print assets from all sources once.')
+	.description('Scan assets from all sources.')
 	.option('-s, --save', 'save results to database', false)
 	.option('-l, --list-all', 'list all query results in the terminal', false)
 	.option('-S, --scanner-config <path>', 'path to the scanner config file')
