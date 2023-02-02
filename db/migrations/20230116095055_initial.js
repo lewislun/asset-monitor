@@ -15,7 +15,7 @@ export async function up(knex) {
 		t.increments('id').primary()
 		t.decimal('total_usd_value', 15, 6).notNullable()
 		t.timestamp('scan_started_at').notNullable()
-		t.timestamp('scan_finished_at').notNullable()
+		t.timestamp('scan_finished_at').notNullable().index()
 	})
 
 	await knex.schema.createTable(AssetSnapshot.tableName, t => {
@@ -25,7 +25,7 @@ export async function up(knex) {
 		t.string('code', 255).notNullable().index()
 		t.string('chain', 255).notNullable().index()
 		t.string('type', 255).notNullable().index()
-		t.string('name', 255).notNullable().index()
+		t.string('name', 255).nullable().index()
 		t.string('state', 255).notNullable().index()
 		t.decimal('quantity', 36, 18).notNullable()
 		t.decimal('usd_value', 15, 6).notNullable()

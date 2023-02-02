@@ -11,4 +11,4 @@
 !/secrets.template.yaml
 
 # knex
-/knexfile.js
+knexfile.js

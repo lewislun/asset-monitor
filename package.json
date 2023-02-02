@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node cli/index.js"
+    "test": "npm-run-all test:*",
+    "test:analytics": "mocha tests/analytics.js --exit"
   },
   "author": "Lewis Cheung",
   "license": "GPL",
@@ -41,9 +42,14 @@
   },
   "devDependencies": {
     "@types/bn.js": "^5.1.1",
+    "@types/chai": "^4.3.4",
     "@types/coingecko-api": "^1.0.10",
     "@types/js-yaml": "^4.0.5",
+    "@types/mocha": "^10.0.1",
     "@types/mustache": "^4.2.2",
-    "@types/node-cron": "^3.0.7"
+    "@types/node-cron": "^3.0.7",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "npm-run-all": "^4.1.5"
   }
 }
