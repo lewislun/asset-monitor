@@ -32,7 +32,7 @@ describe('Analytics', function() {
 						usd_value_per_quantity: 0.5,
 						captured_at: nowData,
 						group: { '#id': 'cex', name: 'cex' },
-						tags: [{ category: 'risk-level', name: '3' }],
+						tags: [{ category: 'risk-level', value: '3' }],
 					},
 					{
 						code: 'XYZ',
@@ -44,7 +44,7 @@ describe('Analytics', function() {
 						usd_value_per_quantity: 12,
 						captured_at: nowData,
 						group: { '#ref': 'cex' },
-						tags: [{ category: 'risk-level', name: '3' }],
+						tags: [{ category: 'risk-level', value: '3' }],
 					},
 					{
 						code: 'ABC',
@@ -56,7 +56,7 @@ describe('Analytics', function() {
 						usd_value_per_quantity: 0.5,
 						captured_at: nowData,
 						group: { '#id': 'chain-hub', name: 'chain-hub' },
-						tags: [{ category: 'risk-level', name: '1' }],
+						tags: [{ category: 'risk-level', value: '1' }],
 					},
 					{
 						code: 'DEF',
@@ -68,7 +68,7 @@ describe('Analytics', function() {
 						usd_value_per_quantity: 1,
 						captured_at: nowData,
 						group: { '#ref': 'chain-hub' },
-						tags: [{ category: 'dummy', name: 'abc' }],
+						tags: [{ category: 'dummy', value: 'abc' }],
 					},
 					{
 						code: 'XYZ',
@@ -80,7 +80,7 @@ describe('Analytics', function() {
 						usd_value_per_quantity: 12,
 						captured_at: nowData,
 						group: { '#ref': 'chain-hub' },
-						tags: [{ category: 'risk-level', name: '1' }],
+						tags: [{ category: 'risk-level', value: '1' }],
 					},
 				]
 			}, { allowRefs: true })
@@ -143,9 +143,9 @@ describe('Analytics', function() {
 		it('gets by tag', async function() {
 			const result = await lib.analytics.getTotalValue({ trx, groupBy: 'tag', tagCategory: 'risk-level' })
 			expect(result).to.have.deep.members([
-				{ tagName: '1', usdValue: new Decimal(9.5) },
-				{ tagName: '3', usdValue: new Decimal(36.5) },
-				{ tagName: null, usdValue: new Decimal(8.8) },
+				{ tagValue: '1', usdValue: new Decimal(9.5) },
+				{ tagValue: '3', usdValue: new Decimal(36.5) },
+				{ tagValue: null, usdValue: new Decimal(8.8) },
 			])
 		})
 

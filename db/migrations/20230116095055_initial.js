@@ -45,7 +45,7 @@ export async function up(knex) {
 		t.increments('id').primary()
 		t.integer('snapshot_id').notNullable().unsigned().index()
 		t.string('category', 255).notNullable().index()
-		t.string('name', 255).notNullable().index()
+		t.string('value', 255).notNullable().index()
 
 		t.unique(['snapshot_id', 'category'])
 		t.foreign('snapshot_id')
