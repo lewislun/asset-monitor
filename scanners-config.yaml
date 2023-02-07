@@ -53,6 +53,8 @@ assetIdByCodeByChain:
     OSMO: __NATIVE__
   rebus:
     REBUS: __NATIVE__
+  ripple:
+    XRP: __NATIVE__
   secret-network:
     SCRT: __NATIVE__
   sifchain:
@@ -136,6 +138,11 @@ assetScanners:
     chain: rebus
     params:
       endpoint: https://api.rebuschain.com:26657
+  # Ripple
+  - type: ripple-native
+    chain: ripple
+    params:
+      endpoint: wss://s1.ripple.com/
   # Secret Network
   - type: cosmos-native
     chain: secret-network
