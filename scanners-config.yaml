@@ -7,6 +7,8 @@ rateLimiters:
 
 # Asset Identifiers (value is defined by the nature of the platform)
 assetIdByCodeByChain:
+  algorand:
+    ALGO: __NATIVE__
   avalanche-c:
     AVAX: __NATIVE__
   bybit:
@@ -70,6 +72,11 @@ assetIdByCodeByChain:
 
 # Define asset scanners
 assetScanners:
+  # Algorand
+  - type: algorand-native
+    chain: algorand
+    params:
+      endpoint: '{{{algorandEndpoint}}}'
   # Avalanche C-Chain
   - type: ethereum-native
     chain: avalanche-c
@@ -84,7 +91,7 @@ assetScanners:
   - type: cardano-native
     chain: cardano
     params:
-      apiKey: '{{cardanoBlockFrostApiKey}}'
+      apiKey: '{{{cardanoBlockFrostApiKey}}}'
   # Comdex
   - type: cosmos-native
     chain: comdex
@@ -202,7 +209,7 @@ priceScanners:
   - type: live-coin-watch
     params:
       endpoint: https://api.livecoinwatch.com
-      apiKey: '{{liveCoinWatchApiKey}}'
+      apiKey: '{{{liveCoinWatchApiKey}}}'
     assetIdByCode:
       ADA: ADA
       ALGO: ALGO

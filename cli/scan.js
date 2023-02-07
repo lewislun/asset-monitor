@@ -23,7 +23,7 @@ cmd
 		logger.info(`Total USD Value: $${scanResult.totalUSDValue}`)
 
 		if (save) {
-			logger.info(`Storeing results to DB - resultCount: ${scanResult.queryResults.length}`)
+			logger.info(`Storing results to DB - resultCount: ${scanResult.queryResults.length}`)
 			const batch = await lib.AssetSnapshotBatch.storeScanResult(scanResult)
 			logger.info(`Results stored to DB - batchId: ${batch.id}`)
 		}
