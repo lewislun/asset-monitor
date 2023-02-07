@@ -49,6 +49,8 @@ assetIdByCodeByChain:
   juno:
     JUNO: __NATIVE__
     GLTO: juno1j0a9ymgngasfn3l5me8qpd53l5zlm9wurfdk7r65s5mg6tkxal3qpgf5se
+  multiversx:
+    EGLD: __NATIVE__
   osmosis:
     OSMO: __NATIVE__
   rebus:
@@ -128,6 +130,11 @@ assetScanners:
     chain: juno
     params:
       endpoint: https://rpc-juno.whispernode.com
+  # Multiversx
+  - type: multiversx-native
+    chain: multiversx
+    params:
+      endpoint: https://elrond-mainnet.public.blastapi.io  # this should be gateway (a.k.a. proxy) endpoint
   # Osmosis
   - type: cosmos-native
     chain: osmosis
