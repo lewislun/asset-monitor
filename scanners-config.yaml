@@ -83,7 +83,7 @@ assetScanners:
     params:
       endpoint: https://rpc.ankr.com/avalanche
   # bybit
-  - type: bybit
+  - type: bybit-spot
     chain: bybit
     params:
       rateLimiterKey: bybit
