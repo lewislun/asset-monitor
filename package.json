@@ -7,9 +7,13 @@
   "scripts": {
     "test": "npm-run-all test:*",
     "test:analytics": "mocha tests/analytics.js --exit",
-    "pm2:restart": "pm2 delete ecosystem.config.cjs && pm2 start ecosystem.config.cjs"
+    "pm2:restart": "pm2 delete ecosystem.config.cjs && pm2 start ecosystem.config.cjs",
+    "typings": "npm-run-all typings:*",
+    "typings:clear": "rimraf typings",
+    "typings:compile": "npx tsc"
   },
   "author": "Lewis Cheung",
+  "typings": "./typings/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "@blockfrost/blockfrost-js": "^5.2.0",
@@ -55,6 +59,8 @@
     "@types/node-cron": "^3.0.7",
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.5"
   }
 }
