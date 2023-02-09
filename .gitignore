@@ -12,3 +12,7 @@
 
 # knex
 knexfile.js
+
+# pm2
+ecosystem.config*
+!ecosystem.config.template.cjs
