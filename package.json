@@ -10,7 +10,7 @@
     "pm2:restart": "pm2 delete ecosystem.config.cjs && pm2 start ecosystem.config.cjs"
   },
   "author": "Lewis Cheung",
-  "license": "GPL",
+  "license": "MIT",
   "dependencies": {
     "@blockfrost/blockfrost-js": "^5.2.0",
     "@cosmjs/cosmwasm-stargate": "^0.29.5",
