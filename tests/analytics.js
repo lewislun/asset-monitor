@@ -13,7 +13,7 @@ describe('Analytics', function() {
 		/** @type {import('knex').Knex.Transaction} */
 		let trx
 
-		before('create snapshot batches', async function() {
+		before('insert mock data', async function() {
 			trx = await knex.transaction()
 
 			const nowData = new Date().toISOString()
@@ -150,5 +150,67 @@ describe('Analytics', function() {
 		})
 
 		it('throws error if tagCategory does not exist')
+	})
+
+	describe('getNetFlowOverTime()', function() {
+		/** @type {import('knex').Knex.Transaction} */
+		let trx
+		let groups = []
+
+		before('insert mock data', async function() {
+			trx = await knex.transaction()
+
+			// create groups
+			groups = await lib.AssetGroup.query(trx).insertGraphAndFetch([
+				{ name: 'group-1' },
+				{ name: 'group-2' },
+				{ name: 'group-3' },
+			])
+
+			// create flows
+			await lib.AssetFlow.query(trx).insertGraph([
+				{ executed_at: new Date('2023-01-02'), usd_value: 100, to_group_id: groups[0].id },
+				{ executed_at: new Date('2023-01-03'), usd_value: 10, from_group_id: groups[0].id, to_group_id: groups[1].id },
+				{ executed_at: new Date('2023-01-01'), usd_value: 5, to_group_id: groups[1].id },
+				{ executed_at: new Date('2023-01-04'), usd_value: 50, from_group_id: groups[0].id, to_group_id: groups[2].id },
+				{ executed_at: new Date('2023-01-05'), usd_value: 7, from_group_id: groups[2].id },
+			])
+		})
+
+		after('rollback trx', async function() {
+			await trx.rollback()
+		})
+
+		it('works', async function() {
+			const result = await lib.analytics.getNetFlowOverTime({ trx })
+
+			expect(result).to.have.deep.members([
+				{
+					groupId: groups[0].id,
+					groupName: "group-1",
+					timeline: [
+						{ time: new Date('2023-01-02T'), usdValue: new Decimal(100) },
+						{ time: new Date('2023-01-03T'), usdValue: new Decimal(90) },
+						{ time: new Date('2023-01-04T'), usdValue: new Decimal(40) },
+					]
+				},
+				{
+					groupId: groups[1].id,
+					groupName: "group-2",
+					timeline: [
+						{ time: new Date('2023-01-01T'), usdValue: new Decimal(5) },
+						{ time: new Date('2023-01-03T'), usdValue: new Decimal(15) },
+					]
+				},
+				{
+					groupId: groups[2].id,
+					groupName: "group-3",
+					timeline: [
+						{ time: new Date('2023-01-04T'), usdValue: new Decimal(50) },
+						{ time: new Date('2023-01-05T'), usdValue: new Decimal(43) },
+					]
+				}
+			])
+		})
 	})
 })
