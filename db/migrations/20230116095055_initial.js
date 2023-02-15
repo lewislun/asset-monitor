@@ -1,3 +1,4 @@
+import { Model } from 'objection'
 import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag, AssetGroup, AssetFlow } from '../../lib/index.js'
 
 /**
@@ -5,6 +6,8 @@ import { AssetSnapshot, AssetSnapshotBatch, AssetSnapshotTag, AssetGroup, AssetF
  * @returns {Promise<void>}
  */
 export async function up(knex) {
+	Model.knex(knex)
+
 	await knex.schema.createTable(AssetGroup.tableName, t => {
 		t.increments('id').primary()
 		t.string('name', 255).notNullable().unique()
@@ -74,6 +77,7 @@ export async function up(knex) {
  * @returns {Promise<void>}
  */
 export async function down(knex) {
+	Model.knex(knex)
 	await knex.schema.dropTableIfExists(AssetSnapshotTag.tableName)
 	await knex.schema.dropTableIfExists(AssetSnapshot.tableName)
 	await knex.schema.dropTableIfExists(AssetSnapshotBatch.tableName)
