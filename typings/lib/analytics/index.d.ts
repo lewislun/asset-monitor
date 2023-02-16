@@ -1,53 +1,27 @@
 /**
- * @typedef NetFlowOverTimeData
- * @property {number} groupId
- * @property {string} groupName
- * @property {{ time: Date, usdValue: Decimal }[]} timeline
- *
+ * @typedef {import('objection').Transaction} Transaction
+ */
+/**
  * @param {object} [opts={}]
  * @param {Transaction} [opts.trx]
- * @returns {Promise<NetFlowOverTimeData[]>}
+ * @returns {Promise<analyticsTypes.NetFlowData[][]>}
  */
 export function getNetFlowOverTime(opts?: {
     trx?: Transaction;
-}): Promise<NetFlowOverTimeData[]>;
+}): Promise<analyticsTypes.NetFlowData[][]>;
 /**
- * @typedef TotalValueAnalyticsData
- * @property {types.AssetCode} [code]
- * @property {types.Chain} [chain]
- * @property {enums.AssetType} [type]
- * @property {enums.AssetState} [state]
- * @property {string} [tagValue]
- * @property {Decimal} usdValue
- *
  * @param {object} [opts={}]
  * @param {Transaction} [opts.trx]
  * @param {'code'|'chain'|'group'|'tag'|'type'|'state'} [opts.groupBy]
  * @param {string} [opts.tagCategory] this is required of opts.groupBy === 'tag'
- * @returns {Promise<TotalValueAnalyticsData[]>}
+ * @param {boolean} [opts.latestBatchOnly=false]
+ * @returns {Promise<analyticsTypes.TotalValueData[][]>}
  */
-export function getTotalValue(opts?: {
+export function getTotalValueOverTime(opts?: {
     trx?: Transaction;
     groupBy?: 'code' | 'chain' | 'group' | 'tag' | 'type' | 'state';
     tagCategory?: string;
-}): Promise<TotalValueAnalyticsData[]>;
+    latestBatchOnly?: boolean;
+}): Promise<analyticsTypes.TotalValueData[][]>;
 export type Transaction = import('objection').Transaction;
-export type NetFlowOverTimeData = {
-    groupId: number;
-    groupName: string;
-    timeline: {
-        time: Date;
-        usdValue: Decimal;
-    }[];
-};
-export type TotalValueAnalyticsData = {
-    code?: types.AssetCode;
-    chain?: types.Chain;
-    type?: enums.AssetType;
-    state?: enums.AssetState;
-    tagValue?: string;
-    usdValue: Decimal;
-};
-import Decimal from "decimal.js";
-import * as types from "../types.js";
-import * as enums from "../enums.js";
+import * as analyticsTypes from "./types.js";

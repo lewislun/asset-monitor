@@ -9,10 +9,12 @@ export default class AssetGroup extends BaseModel {
      * @param {types.AssetGroupSpecifier} specifier
      * @param {object} [opts={}]
      * @param {Transaction} [opts.trx]
+     * @param {bool} [opts.create=false] Create the group if not exist and specifier is string.
      * @returns {Promise<number | undefined>}
      */
     public static getGroupId(specifier: types.AssetGroupSpecifier, opts?: {
         trx?: Transaction;
+        create?: bool;
     }): Promise<number | undefined>;
     /** @type {import('objection').RelationMappings} */
     static get relationMappings(): import("objection").RelationMappings;

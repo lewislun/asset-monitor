@@ -324,7 +324,23 @@ describe('Analytics', function() {
 			])
 		})
 
+		it('gets only the latest batch if opts.latestBatchOnly is true', async function() {
+			const result = await lib.analytics.getTotalValueOverTime({ trx, groupBy: 'tag', tagCategory: 'risk-level', latestBatchOnly: true })
+			expect(result).to.have.deep.members([
+				[
+					{ time: new Date('2023-01-03'), tagValue: '1', usdValue: new Decimal(24) },
+				],
+				[
+					{ time: new Date('2023-01-03'), tagValue: '3', usdValue: new Decimal(18) },
+				],
+				[
+					{ time: new Date('2023-01-03'), tagValue: null, usdValue: new Decimal(0) },
+				],
+			])
+		})
+
 		it('throws error if tagCategory does not exist')
+		it('get by batch id/time range?')
 	})
 
 	describe('getNetFlowOverTime()', function() {

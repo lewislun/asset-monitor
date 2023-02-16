@@ -14,11 +14,13 @@ export default class AssetFlow extends BaseModel {
      * @param {object} [opts={}]
      * @param {Date} [opts.time]
      * @param {Transaction} [opts.trx]
+     * @param {bool} [opts.createGroup=false] Create group if not exist
      * @returns {Promise<AssetFlow>}
      */
     public static recordFlow(fromGroupSpecifier: types.AssetGroupSpecifier, toGroupSpecifier: types.AssetGroupSpecifier, usdValue: Decimal.Value, opts?: {
         time?: Date;
         trx?: Transaction;
+        createGroup?: bool;
     }): Promise<AssetFlow>;
 }
 export type Transaction = import('objection').Transaction;
