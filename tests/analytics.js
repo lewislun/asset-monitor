@@ -372,20 +372,28 @@ describe('Analytics', function() {
 			await trx.rollback()
 		})
 
-		it('works', async function() {
+		it.only('works', async function() {
 			const result = await lib.analytics.getNetFlowOverTime({ trx })
 
 			expect(result).to.have.deep.members([
 				[
+					{ groupId: groups[0].id, groupName: 'group-1', time: new Date('2023-01-01'), usdValue: new Decimal(0) },
 					{ groupId: groups[0].id, groupName: 'group-1', time: new Date('2023-01-02'), usdValue: new Decimal(100) },
 					{ groupId: groups[0].id, groupName: 'group-1', time: new Date('2023-01-03'), usdValue: new Decimal(90) },
 					{ groupId: groups[0].id, groupName: 'group-1', time: new Date('2023-01-04'), usdValue: new Decimal(40) },
+					{ groupId: groups[0].id, groupName: 'group-1', time: new Date('2023-01-05'), usdValue: new Decimal(40) },
 				],
 				[
 					{ groupId: groups[1].id, groupName: 'group-2', time: new Date('2023-01-01'), usdValue: new Decimal(5) },
+					{ groupId: groups[1].id, groupName: 'group-2', time: new Date('2023-01-02'), usdValue: new Decimal(5) },
 					{ groupId: groups[1].id, groupName: 'group-2', time: new Date('2023-01-03'), usdValue: new Decimal(15) },
+					{ groupId: groups[1].id, groupName: 'group-2', time: new Date('2023-01-04'), usdValue: new Decimal(15) },
+					{ groupId: groups[1].id, groupName: 'group-2', time: new Date('2023-01-05'), usdValue: new Decimal(15) },
 				],
 				[
+					{ groupId: groups[2].id, groupName: 'group-3', time: new Date('2023-01-01'), usdValue: new Decimal(0) },
+					{ groupId: groups[2].id, groupName: 'group-3', time: new Date('2023-01-02'), usdValue: new Decimal(0) },
+					{ groupId: groups[2].id, groupName: 'group-3', time: new Date('2023-01-03'), usdValue: new Decimal(0) },
 					{ groupId: groups[2].id, groupName: 'group-3', time: new Date('2023-01-04'), usdValue: new Decimal(50) },
 					{ groupId: groups[2].id, groupName: 'group-3', time: new Date('2023-01-05'), usdValue: new Decimal(43) },
 				]
