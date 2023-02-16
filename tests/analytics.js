@@ -28,7 +28,6 @@ describe('Analytics', function() {
 			batches[0] = await lib.AssetSnapshotBatch.query(trx).insertGraph({
 				scan_started_at: new Date('2023-01-01'),
 				scan_finished_at: new Date('2023-01-01'),
-				total_usd_value: '54.8',
 				snapshots: [
 					{
 						code: 'ABC',
@@ -95,7 +94,6 @@ describe('Analytics', function() {
 			batches[1] = await lib.AssetSnapshotBatch.query(trx).insertGraph({
 				scan_started_at: new Date('2023-01-02'),
 				scan_finished_at: new Date('2023-01-02'),
-				total_usd_value: '42.8',
 				snapshots: [
 					{
 						code: 'XYZ',
@@ -150,7 +148,6 @@ describe('Analytics', function() {
 			batches[2] = await lib.AssetSnapshotBatch.query(trx).insertGraph({
 				scan_started_at: new Date('2023-01-03'),
 				scan_finished_at: new Date('2023-01-03'),
-				total_usd_value: '42',
 				snapshots: [
 					{
 						code: 'XYZ',
@@ -372,7 +369,7 @@ describe('Analytics', function() {
 			await trx.rollback()
 		})
 
-		it.only('works', async function() {
+		it('works', async function() {
 			const result = await lib.analytics.getNetFlowOverTime({ trx })
 
 			expect(result).to.have.deep.members([
