@@ -12,3 +12,6 @@
 
 # knex
 knexfile.js
+
+# temp scripts
+/temp-scripts

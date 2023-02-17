@@ -29,15 +29,16 @@ export async function up(knex) {
 		t.string('type', 255).notNullable().index()
 		t.string('name', 255).nullable().index()
 		t.string('state', 255).notNullable().index()
-		t.decimal('quantity', 36, 18).notNullable()
+		t.decimal('quantity', 36, 18).nullable()
 		t.decimal('usd_value', 15, 6).notNullable()
-		t.decimal('usd_value_per_quantity', 15, 6).notNullable()
+		t.decimal('usd_value_per_quantity', 15, 6).nullable()
 		t.string('account_id', 255).nullable()
 		t.timestamp('captured_at').notNullable()
 
 		t.foreign('batch_id')
 			.references('id')
 			.inTable(AssetSnapshotBatch.tableName)
+			.onDelete('CASCADE')
 		t.foreign('group_id')
 			.references('id')
 			.inTable(AssetGroup.tableName)
@@ -53,6 +54,7 @@ export async function up(knex) {
 		t.foreign('snapshot_id')
 			.references('id')
 			.inTable(AssetSnapshot.tableName)
+			.onDelete('CASCADE')
 	})
 
 	await knex.schema.createTable(AssetFlow.tableName, t => {
