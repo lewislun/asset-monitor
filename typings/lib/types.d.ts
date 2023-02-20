@@ -29,11 +29,11 @@ export type AssetQueryResult = {
     chain: Chain;
     type: enums.AssetType;
     state: enums.AssetState;
-    quantity: Decimal;
+    quantity?: Decimal;
     usdValue: Decimal;
-    usdValuePerQuantity: number;
-    timestamp: number;
-    tagMap: object<string, string>;
+    usdValuePerQuantity?: number;
+    timestamp: Date | number;
+    tagMap?: object<string, string>;
     /**
      * Auto patched by BaseAssetScanner. Value of this field in psuedo: query.addr ?? query.apiKey ?? query.apiSecret(censored) ?? undefined.
      */
