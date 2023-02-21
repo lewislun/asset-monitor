@@ -169,15 +169,15 @@ assetScanners:
   - type: solana-native
     chain: solana
     params:
-      endpoint: https://rpc.ankr.com/solana
+      endpoint: '{{{solanaEndpoint}}}'
   - type: solana-secondary
     chain: solana
     params:
-      endpoint: https://rpc.ankr.com/solana
+      endpoint: '{{{solanaEndpoint}}}'
   - type: orca-whirlpool
     chain: solana
     params:
-      endpoint: https://rpc.ankr.com/solana
+      endpoint: '{{{solanaEndpoint}}}'
 
 # Define price scanners
 priceScanners:
