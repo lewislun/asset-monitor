@@ -3,3 +3,4 @@ export { default as AssetFlow } from "./asset-flow.js";
 export { default as AssetSnapshot } from "./asset-snapshot.js";
 export { default as AssetSnapshotBatch } from "./asset-snapshot-batch.js";
 export { default as AssetSnapshotTag } from "./asset-snapshot-tag.js";
+export { default as User } from "./user.js";

@@ -37,3 +37,9 @@ export namespace PriceScannerType {
     const COIN_GECKO: string;
     const LIVE_COIN_WATCH: string;
 }
+export type UserRole = string;
+export namespace UserRole {
+    const OWNER: string;
+    const OPERATOR: string;
+    const VIEWER: string;
+}

@@ -50,3 +50,24 @@ export class MissingParamError extends Error {
 export class NoDataError extends Error {
     constructor();
 }
+export class UserNotFound extends Error {
+    /**
+     * @param {string} username
+     */
+    constructor(username: string);
+}
+export class IncorrectPassword extends Error {
+    constructor();
+}
+export class InvalidPasswordFormat extends Error {
+    /**
+     * @param {string} msg
+     */
+    constructor(msg: string);
+}
+export class UsernameAlreadyExistError extends Error {
+    /**
+     * @param {string} username
+     */
+    constructor(username: string);
+}

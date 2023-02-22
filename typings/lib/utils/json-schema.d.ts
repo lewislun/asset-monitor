@@ -8,5 +8,6 @@ export namespace schema {
     const decimal: JSONSchema;
     const datetime: JSONSchema;
     const refId: JSONSchema;
+    const userRole: JSONSchema;
 }
 export type JSONSchema = import('objection').JSONSchema;
