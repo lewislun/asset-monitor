@@ -28,7 +28,7 @@ export async function up(knex) {
 
 	await knex.schema.createTable(User.tableName, t => {
 		t.increments('id')
-		t.string('name', 255).notNullable()
+		t.string('name', 255).notNullable().unique()
 		t.string('hashed_password', 128).notNullable()
 		t.enum('role', Object.values(enums.UserRole)).notNullable().defaultTo(enums.UserRole.VIEWER)
 		t.timestamp('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
