@@ -8,7 +8,6 @@ const cmd = new Command('group')
 const logger = lib.createLogger('CLI')
 
 cmd
-	.description('Create an asset group.')
 	.addCommand(new Command('create')
 		.argument('<name>', 'Name of the asset group.')
 		.action(async name => {
