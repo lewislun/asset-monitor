@@ -1,9 +1,6 @@
 # npm
 /node_modules
 
-# vscode
-/.vscode
-
 # configs and secrets
 /query-config*.yaml
 !/query-config.template.yaml

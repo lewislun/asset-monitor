@@ -53,6 +53,8 @@ assetIdByCodeByChain:
     EGLD: __NATIVE__
   osmosis:
     OSMO: __NATIVE__
+  quicksilver:
+    QCK: __NATIVE__
   rebus:
     REBUS: __NATIVE__
   ripple:
@@ -73,6 +75,8 @@ assetIdByCodeByChain:
     USDT: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
   stargaze:
     STARS: __NATIVE__
+  stride:
+    STRD: __NATIVE__
 
 # Define asset scanners
 assetScanners:
@@ -140,6 +144,11 @@ assetScanners:
     chain: osmosis
     params:
       endpoint: https://osmosis-rpc.quickapi.com
+  # Quicksilver
+  - type: cosmos-native
+    chain: quicksilver
+    params:
+      endpoint: https://rpc.quicksilver.zone
   # Rebus
   - type: cosmos-native
     chain: rebus
@@ -154,17 +163,12 @@ assetScanners:
   - type: cosmos-native
     chain: secret-network
     params:
-      endpoint: https://secret-4.api.trivium.network:26657
+      endpoint: https://rpc.secret.express
   # Sifchain
   - type: cosmos-native
     chain: sifchain
     params:
       endpoint: https://sifchain-rpc.polkachu.com/
-  # Stargaze
-  - type: cosmos-native
-    chain: stargaze
-    params:
-      endpoint: https://rpc.stargaze-apis.com
   # Solana
   - type: solana-native
     chain: solana
@@ -178,6 +182,16 @@ assetScanners:
     chain: solana
     params:
       endpoint: '{{{solanaEndpoint}}}'
+  # Stargaze
+  - type: cosmos-native
+    chain: stargaze
+    params:
+      endpoint: https://rpc.stargaze-apis.com
+  # Stride
+  - type: cosmos-native
+    chain: stride
+    params:
+      endpoint: https://stride.rpc.kjnodes.com
 
 # Define price scanners
 priceScanners:
@@ -208,12 +222,14 @@ priceScanners:
       NEAR: near
       ORCA: orca
       OSMO: osmosis
+      QCK: quicksilver
       RAY: raydium
       REBUS: rebus
       ROWAN: sifchain
       SCRT: secret
       SHIB: shiba-inu
       SOL: solana
+      STRD: stride
       mSOL: msol
       wSOL: wrapped-solana
       STARS: stargaze
@@ -243,4 +259,5 @@ priceScanners:
       MATIC: MATIC
       NEAR: NEAR
       SOL: SOL
+      STRD: STRD
       XRP: XRP
