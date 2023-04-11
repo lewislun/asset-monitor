@@ -29,6 +29,7 @@
     "@solana/web3.js": "^1.70.0",
     "ajv-formats": "^2.1.1",
     "algosdk": "^2.1.0",
+    "aptos": "^1.7.2",
     "bcrypt": "^5.1.0",
     "bech32": "^2.0.0",
     "bn.js": "^5.2.1",
