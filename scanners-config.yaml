@@ -138,7 +138,7 @@ assetScanners:
   - type: multiversx-native
     chain: multiversx
     params:
-      endpoint: https://elrond-mainnet.public.blastapi.io  # this should be gateway (a.k.a. proxy) endpoint
+      endpoint: https://api.multiversx.com
   # Osmosis
   - type: cosmos-native
     chain: osmosis
