@@ -13,6 +13,8 @@ assetIdByCodeByChain:
     APT: __NATIVE__
   avalanche-c:
     AVAX: __NATIVE__
+  bitcoin:
+    BTC: __NATIVE__
   bybit:
     ADA: ADA
     ALGO: ALGO
@@ -99,6 +101,12 @@ assetScanners:
     chain: avalanche-c
     params:
       endpoint: https://rpc.ankr.com/avalanche
+  # Bitcoin
+  - type: bitcoin-blockchair-native
+    chain: bitcoin
+    params:
+      endpoint: https://api.blockchair.com/bitcoin
+      # endpoint: https://stylish-winter-telescope.btc.discover.quiknode.pro/68a60171f79ffdf7e306cd800d754bfc5116e91a
   # bybit
   - type: bybit-spot
     chain: bybit
