@@ -6,6 +6,7 @@
 		"cosmjs",
 		"cosmwasm",
 		"mnemonist",
+		"plpgsql",
 		"STRD",
 		"xrpl"
 	]
