@@ -9,6 +9,8 @@ rateLimiters:
 assetIdByCodeByChain:
   algorand:
     ALGO: __NATIVE__
+  aptos:
+    APT: __NATIVE__
   avalanche-c:
     AVAX: __NATIVE__
   bybit:
@@ -85,6 +87,11 @@ assetScanners:
     chain: algorand
     params:
       endpoint: '{{{algorandEndpoint}}}'
+  # Aptos
+  - type: aptos-native
+    chain: aptos
+    params:
+      endpoint: https://rpc.ankr.com/http/aptos/v1
   # Avalanche C-Chain
   - type: ethereum-native
     chain: avalanche-c
