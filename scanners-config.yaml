@@ -110,7 +110,7 @@ assetScanners:
     chain: cosmos-hub
     params:
       assetCode: ATOM
-      endpoint: https://cosmos-mainnet-rpc.allthatnode.com:26657
+      endpoint: https://cosmos-rpc.polkachu.com
   # Ethereum
   - type: ethereum-native
     chain: ethereum
