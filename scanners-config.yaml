@@ -106,14 +106,13 @@ assetScanners:
     chain: bitcoin
     params:
       endpoint: https://api.blockchair.com/bitcoin
-      # endpoint: https://stylish-winter-telescope.btc.discover.quiknode.pro/68a60171f79ffdf7e306cd800d754bfc5116e91a
   # bybit
   - type: bybit-spot
     chain: bybit
     params:
       rateLimiterKey: bybit
   # Cardano
-  - type: cardano-native
+  - type: cardano-blockfrost-native
     chain: cardano
     params:
       apiKey: '{{{cardanoBlockFrostApiKey}}}'
