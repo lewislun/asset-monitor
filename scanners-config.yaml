@@ -67,6 +67,8 @@ assetIdByCodeByChain:
     ROWAN: __NATIVE__
   solana:
     SOL: __NATIVE__
+    GMT: 7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx
+    GST: AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB
     KI: kiGenopAScF8VF31Zbtx2Hg8qA5ArGqvnVtXb83sotc
     MNDE: MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey
     ORCA: orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE
@@ -219,6 +221,7 @@ priceScanners:
       stETH: staked-ether
       EVMOS: evmos
       GMT: stepn
+      GST: green-satoshi-token
       JUNO: juno-network
       KI: genopet-ki
       LDO: lido-dao
