@@ -10,10 +10,9 @@ cmd
 	.option('-s, --save', 'save results to database', false)
 	.option('-l, --list-all', 'list all query results in the terminal', false)
 	.option('-S, --scanner-config <path>', 'path to the scanner config file')
-	.option('-Q, --query-config <path>', 'path to the query config file')
 	.option('-C, --secrets <path>', 'path to the secrets file')
-	.action(async ({ save, listAll, queryConfig, scannerConfig, secrets }) => {
-		const assetMonitor = new lib.AssetMonitor({ queryConfigPath: queryConfig, scannerConfigPath: scannerConfig, secretsPath: secrets })
+	.action(async ({ save, listAll, scannerConfig, secrets }) => {
+		const assetMonitor = new lib.AssetMonitor({ scannerConfigPath: scannerConfig, secretsPath: secrets })
 		const scanResult = await assetMonitor.scan()
 		if (listAll) {
 			scanResult.queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
