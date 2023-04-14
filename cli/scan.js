@@ -15,13 +15,13 @@ cmd
 		const assetMonitor = new lib.AssetMonitor({ scannerConfigPath: scannerConfig, secretsPath: secrets })
 		const scanResult = await assetMonitor.scan()
 		if (listAll) {
-			scanResult.queryResults.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
+			scanResult.snapshots.forEach(result => logger.info(JSON.stringify(result, undefined, 2)))
 		}
 		logger.info(`Total USD Value: $${scanResult.totalUSDValue}`)
 
 		if (save) {
-			logger.info(`Storing results to DB - resultCount: ${scanResult.queryResults.length}`)
-			const batch = await lib.AssetSnapshotBatch.storeScanResult(scanResult)
+			logger.info(`Storing results to DB - resultCount: ${scanResult.snapshots.length}`)
+			const batch = await lib.AssetSnapshotBatch.store(scanResult)
 			logger.info(`Results stored to DB - batchId: ${batch.id}`)
 		}
 
