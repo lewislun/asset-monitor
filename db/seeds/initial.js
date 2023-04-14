@@ -1,5 +1,5 @@
 import { Model } from 'objection'
-import { AssetGroup, DEFAULT_ASSET_GROUP_NAME } from '../../lib/index.js'
+import { AssetGroup } from '../../lib/index.js'
 
 /**
  * @param {import('knex').Knex} knex
@@ -7,5 +7,5 @@ import { AssetGroup, DEFAULT_ASSET_GROUP_NAME } from '../../lib/index.js'
  */
 export async function seed(knex) {
 	Model.knex(knex)
-	await AssetGroup.query(knex).insert({ name: DEFAULT_ASSET_GROUP_NAME })
+	await AssetGroup.query(knex).insert({ name: 'default' })
 }

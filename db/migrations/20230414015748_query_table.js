@@ -15,6 +15,7 @@ const getOnUpdateTrigger = (tableName) => `
 export async function up(knex) {
 	Model.knex(knex)
 
+	// create asset query table
 	await knex.schema.createTable(AssetQuery.tableName, t => {
 		t.increments('id')
 		t.string('scanner_type', 255).notNullable()
@@ -33,6 +34,12 @@ export async function up(knex) {
 			.onDelete('CASCADE')
 	})
 	await knex.raw(getOnUpdateTrigger(AssetQuery.tableName))
+
+	// add is_default column to asset group table and set default group to default
+	await knex.schema.table(AssetGroup.tableName, t => {
+		t.boolean('is_default').defaultTo(false).notNullable()
+	})
+	await knex(AssetGroup.tableName).update({ is_default: true }).where({ name: 'default' })
 }
 
 /**
@@ -43,4 +50,7 @@ export async function down(knex) {
 	Model.knex(knex)
 
 	await knex.schema.dropTable(AssetQuery.tableName)
+	await knex.schema.table(AssetGroup.tableName, t => {
+		t.dropColumn('is_default')
+	})
 }
