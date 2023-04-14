@@ -18,6 +18,15 @@ export default class AssetGroup extends BaseModel {
     }): Promise<number | undefined>;
     /** @type {import('objection').RelationMappings} */
     static get relationMappings(): import("objection").RelationMappings;
+    /**
+     * Get default group
+     * @param {object} [opts={}]
+     * @param {Transaction} [opts.trx]
+     * @returns {Promise<AssetGroup>}
+     */
+    static getDefault(opts?: {
+        trx?: Transaction;
+    }): Promise<AssetGroup>;
 }
 export type Transaction = import('objection').Transaction;
 import BaseModel from "./base.js";

@@ -4,28 +4,28 @@ export default class BaseAssetScanner extends BaseService {
     /**
      * @param {PriceAggregator} priceAggregator
      * @param {types.Chain} chain
-     * @param {AssetInfoMap} [assetIdByCode]
+     * @param {BiMap} [assetInfoMap]
      * @param {ServiceParamDict} [paramDict]
      * @param {RateLimiterOpts} [rateLimitOpts={}]
      */
-    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetIdByCode?: AssetInfoMap, paramDict?: ServiceParamDict, rateLimitOpts?: RateLimiterOpts);
+    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetInfoMap?: BiMap<any, any>, paramDict?: ServiceParamDict, rateLimitOpts?: RateLimiterOpts);
     /** @type {types.Chain} */ chain: types.Chain;
     /** @protected @type {BiMap<types.AssetCode, string>} */ protected assetIdByCode: BiMap<types.AssetCode, string>;
     /** @protected @type {PriceAggregator} */ protected priceAggregator: PriceAggregator;
     get nativeTokenCode(): string;
     /**
      * @public
-     * @param {types.AssetQuery} assetQuery
-     * @returns {Promise<types.AssetQueryResult[]>}
+     * @param {AssetQuery} query
+     * @returns {Promise<AssetSnapshot[]>}
      */
-    public query(assetQuery: types.AssetQuery): Promise<types.AssetQueryResult[]>;
+    public query(query: AssetQuery): Promise<AssetSnapshot[]>;
     /**
      * @protected
      * @abstract
-     * @param {types.AssetQuery} assetQuery
-     * @returns {Promise<types.AssetQueryResult[]>}
+     * @param {AssetQuery} assetQuery
+     * @returns {Promise<AssetSnapshot[]>}
      */
-    protected _query(assetQuery: types.AssetQuery): Promise<types.AssetQueryResult[]>;
+    protected _query(assetQuery: AssetQuery): Promise<AssetSnapshot[]>;
 }
 export type RateLimiterOpts = import('../utils').RateLimiterOpts;
 export type ServiceParamDict = import('../utils').ServiceParamDict;
@@ -33,3 +33,5 @@ import { BaseService } from "../utils/index.js";
 import * as types from "../types.js";
 import { BiMap } from "mnemonist";
 import PriceAggregator from "../price-aggregator.js";
+import { AssetQuery } from "../models/index.js";
+import { AssetSnapshot } from "../models/index.js";

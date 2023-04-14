@@ -6,9 +6,9 @@ export default class BaseSolanaAssetScanner extends BaseAssetScanner {
     /**
      * @protected
      * @param {solanaWeb3.Context} context
-     * @returns {Promise<number>}
+     * @returns {Promise<Date>}
      */
-    protected getTimestampFromContext(context: solanaWeb3.Context): Promise<number>;
+    protected getDatetimeFromContext(context: solanaWeb3.Context): Promise<Date>;
     /**
      * Get SPL token decimals from cache. On miss, retrieve from chain by getTokenSupply().
      *

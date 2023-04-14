@@ -20,10 +20,10 @@ export function isEnumMember(enumObj: enum, val: any): boolean;
 /**
  * @template T
  * @param {(trx: Transaction) => Promise<T>} func
- * @param {Transaction} [trx]
+ * @param {Transaction} [parentTrx]
  * @returns {Promise<T>}
  */
-export function startOrInheritTransaction<T>(func: (trx: Transaction) => Promise<T>, trx?: Transaction): Promise<T>;
+export function startOrInheritTransaction<T>(func: (trx: Transaction) => Promise<T>, parentTrx?: Transaction): Promise<T>;
 /**
  * @param {object} obj This object will be altered.
  * @returns {object}

@@ -15,12 +15,14 @@ export namespace AssetState {
 export type AssetScannerType = string;
 export namespace AssetScannerType {
     const ALGORAND_NATIVE: string;
+    const APTOS_NATIVE: string;
+    const BITCOIN_BLOCKCHAIR_NATIVE: string;
     const BYBIT_SPOT: string;
-    const CARDANO_NATIVE: string;
+    const CARDANO_BLOCKFROST_NATIVE: string;
     const COSMOS_NATIVE: string;
     const COSMOS_SECONDARY: string;
     const ETHEREUM_NATIVE: string;
-    const ETHEREUN_SECONDARY: string;
+    const ETHEREUM_SECONDARY: string;
     const MULTIVERSX_NATIVE: string;
     const RIPPLE_NATIVE: string;
     const SOLANA_NATIVE: string;

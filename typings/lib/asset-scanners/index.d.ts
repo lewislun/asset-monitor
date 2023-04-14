@@ -4,7 +4,9 @@
 export const ScannerClassByType: object<string, typeof BaseAssetScanner>;
 export { default as BaseAssetScanner } from "./base.js";
 export * from "./algorand/index.js";
+export * from "./aptos/index.js";
 export * from "./bybit/index.js";
+export * from "./bitcoin/index.js";
 export * from "./cardano/index.js";
 export * from "./cosmos/index.js";
 export * from "./ethereum/index.js";

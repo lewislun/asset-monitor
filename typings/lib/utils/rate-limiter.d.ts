@@ -1,7 +1,7 @@
 export default class RateLimiter {
     /** @type {Map<string, RateLimiter>} */ static instanceMap: Map<string, RateLimiter>;
     /**
-     * Get an initizalized RateLimiter by opts.instanceKey. If it does not exist, create one. This is useful for sharing RateLimiter if the same endpoint is used.
+     * Get an initialized RateLimiter by opts.instanceKey. If it does not exist, create one. This is useful for sharing RateLimiter if the same endpoint is used.
      *
      * @static
      * @public
@@ -18,6 +18,7 @@ export default class RateLimiter {
     /** @type {number} */ callIntervalMs: number;
     /** @type {number} */ retryCount: number;
     /** @type {number} */ onErrPauseTimeMs: number;
+    /** @type {number} */ timeoutMs: number;
     /** @type {boolean} */ isLoopRunning: boolean;
     /** @protected @type {NodeJS.Timeout} */ protected nextIteration: NodeJS.Timeout;
     /**

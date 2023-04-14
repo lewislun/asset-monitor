@@ -1,5 +1,5 @@
 export default class BaseMultiversxAssetScanner extends BaseAssetScanner {
-    /** @type {ProxyNetworkProvider} */ client: ProxyNetworkProvider;
+    /** @type {ApiNetworkProvider} */ client: ApiNetworkProvider;
 }
 import BaseAssetScanner from "../base.js";
-import { ProxyNetworkProvider } from "@multiversx/sdk-network-providers";
+import { ApiNetworkProvider } from "@multiversx/sdk-network-providers";

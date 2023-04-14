@@ -3,8 +3,7 @@ export default class AssetMonitor {
      * @param {AssetMonitorOpts} [opts={}]
      */
     constructor(opts?: AssetMonitorOpts);
-    /** @type {Map<string, BaseAssetScanner>} */ assetScannerByName: Map<string, BaseAssetScanner>;
-    /** @type {types.AssetQuery[]} */ queries: types.AssetQuery[];
+    /** @type {Map<string, Map<string, BaseAssetScanner>>} */ assetScannerByChainByType: Map<string, Map<string, BaseAssetScanner>>;
     /** @protected @type {Map<string, BiMap<string, types.AssetCode>>} */ protected assetIdByCodeByChain: Map<string, BiMap<string, types.AssetCode>>;
     /** @protected @type {PriceAggregator} */ protected priceAggregator: PriceAggregator;
     /**
@@ -31,11 +30,6 @@ export default class AssetMonitor {
     public close(): Promise<void>;
     /**
      * @public
-     * @param {types.AssetQuery} query
-     */
-    public addQuery(query: types.AssetQuery): void;
-    /**
-     * @public
      * @param {types.AssetScannerConfig} config
      */
     public addAssetScanner(config: types.AssetScannerConfig): void;
@@ -44,11 +38,6 @@ export default class AssetMonitor {
      * @param {types.PriceScannerConfig} config
      */
     public addPriceScanner(config: types.PriceScannerConfig): void;
-    /**
-     * @protected
-     * @param {types.QueryConfig} config
-     */
-    protected setupQueries(config: types.QueryConfig): void;
     /**
      * @protected
      * @param {types.ScannersConfig} config
@@ -61,6 +50,6 @@ export type AssetMonitorOpts = {
     secretsPath?: string;
 };
 import { BaseAssetScanner } from "./asset-scanners/index.js";
-import * as types from "./types.js";
 import { BiMap } from "mnemonist";
+import * as types from "./types.js";
 import PriceAggregator from "./price-aggregator.js";
