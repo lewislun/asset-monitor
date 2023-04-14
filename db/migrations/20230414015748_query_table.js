@@ -1,6 +1,13 @@
 import { Model } from 'objection'
 import { AssetQuery, AssetGroup } from '../../lib/models/index.js'
 
+const getOnUpdateTrigger = (tableName) => `
+	CREATE TRIGGER ${tableName}_updated_at
+	BEFORE UPDATE ON ${tableName}
+	FOR EACH ROW
+	EXECUTE PROCEDURE on_update_timestamp();
+`
+
 /**
  * @param {import('knex').Knex} knex
  * @returns {Promise<void>}
@@ -16,8 +23,8 @@ export async function up(knex) {
 		t.integer('group_id').unsigned()
 		t.string('api_key', 255)
 		t.string('api_secret', 255)
-		t.jsonb('extra_tag_map').defaultTo('{}')
-		t.boolean('is_enabled').defaultTo(true)
+		t.jsonb('extra_tag_map').defaultTo('{}').notNullable()
+		t.boolean('is_enabled').defaultTo(true).notNullable()
 		t.timestamps(true, true)
 
 		t.foreign('group_id')
@@ -25,6 +32,7 @@ export async function up(knex) {
 			.inTable(AssetGroup.tableName)
 			.onDelete('CASCADE')
 	})
+	await knex.raw(getOnUpdateTrigger(AssetQuery.tableName))
 }
 
 /**

@@ -1,5 +1,3 @@
-'use strict'
-
 import { Command } from 'commander'
 import readlineSync from 'readline-sync'
 

@@ -1,5 +1,3 @@
-'use strict'
-
 import { Command } from 'commander'
 
 import * as lib from '../lib/index.js'
