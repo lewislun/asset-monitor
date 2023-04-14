@@ -63,6 +63,18 @@ export async function up(knex) {
 			.max('scan_started_at')
 			.toKnexQuery()
 
+		// Query for 30-day high
+		const thirtyDayHighQuery = BatchListView.query(knex)
+			.max('usd_value')
+			.where('scan_started_at', '>', knex.raw('now() - interval \'30 day\''))
+			.toKnexQuery()
+		
+		// Query for 30-day low
+		const thirtyDayLowQuery = BatchListView.query(knex)
+			.min('usd_value')
+			.where('scan_started_at', '>', knex.raw('now() - interval \'30 day\''))
+			.toKnexQuery()
+
 		// Query for total inflow, outflow, and net inflow
 		const totalInflowQuery = AssetFlow.query(knex)
 			.sum('usd_value')
@@ -83,12 +95,21 @@ export async function up(knex) {
 			'one_day_ago_usd_value',
 			'seven_day_ago_usd_value',
 			'thirty_day_ago_usd_value',
-			'pnl_percent',
+			'thirty_day_range',
+			'pnl',
 		])
 		v.as(knex.raw(`
 			select
-				t.*,
-				round((t.current_usd_value - t.net_inflow) / t.net_inflow * 100, 2) as pnl_percent,
+				total_inflow,
+				total_outflow,
+				net_inflow,
+				last_scanned_at,
+				current_usd_value,
+				one_day_ago_usd_value,
+				seven_day_ago_usd_value,
+				thirty_day_ago_usd_value,
+				thirty_day_low || ' - ' || thirty_day_high as thirty_day_range,
+				round((t.current_usd_value - t.net_inflow) / t.net_inflow * 100, 2) || '%' as pnl
 			from (
 				select
 					(${totalInflowQuery}) as total_inflow,
@@ -98,7 +119,9 @@ export async function up(knex) {
 					(${currentUsdValueQuery}) as current_usd_value,
 					(${oneDayAgoUsdValueQuery}) as one_day_ago_usd_value,
 					(${sevenDayAgoUsdValueQuery}) as seven_day_ago_usd_value,
-					(${thirtyAgoUsdValueQuery}) as thirty_day_ago_usd_value
+					(${thirtyAgoUsdValueQuery}) as thirty_day_ago_usd_value,
+					(${thirtyDayHighQuery}) as thirty_day_high,
+					(${thirtyDayLowQuery}) as thirty_day_low
 			) as t
 		`))
 	})
