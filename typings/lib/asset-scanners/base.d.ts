@@ -8,7 +8,7 @@ export default class BaseAssetScanner extends BaseService {
      * @param {ServiceParamDict} [paramDict]
      * @param {RateLimiterOpts} [rateLimitOpts={}]
      */
-    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetInfoMap?: BiMap<any, any>, paramDict?: ServiceParamDict, rateLimitOpts?: RateLimiterOpts);
+    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetInfoMap?: BiMap<any, any>, paramDict?: ServiceParamDict, rateLimitOpts?: any);
     /** @type {types.Chain} */ chain: types.Chain;
     /** @protected @type {BiMap<types.AssetCode, string>} */ protected assetIdByCode: BiMap<types.AssetCode, string>;
     /** @protected @type {PriceAggregator} */ protected priceAggregator: PriceAggregator;

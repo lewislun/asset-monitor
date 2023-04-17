@@ -20,7 +20,7 @@ export default class BasePriceScanner extends BaseService {
      */
     protected _getPrice(code: types.AssetCode): Promise<number>;
 }
-export type RateLimiterOpts = import('../utils').RateLimiterOpts;
+export type RateLimiterOpts = import('rate-limiter').RateLimiterOpts;
 export type ServiceParamDict = import('../utils').ServiceParamDict;
 import { BaseService } from "../utils/index.js";
 import { BiMap } from "mnemonist";

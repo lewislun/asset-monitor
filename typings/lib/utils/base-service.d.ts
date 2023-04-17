@@ -7,7 +7,7 @@ export default class BaseService {
      * @param {ServiceParamDict} paramDict
      * @param {RateLimiterOpts} rateLimiterOpts
      */
-    constructor(paramDict: ServiceParamDict, rateLimiterOpts: any);
+    constructor(paramDict: ServiceParamDict, rateLimiterOpts: RateLimiterOpts);
     /** @protected @type {ServiceParamDict} */ protected paramDict: ServiceParamDict;
     /** @protected @type {RateLimiter} */ protected rateLimiter: RateLimiter;
     /** @protected @type {boolean} */ protected isInitialized: boolean;
@@ -28,10 +28,10 @@ export default class BaseService {
      */
     public close(): Promise<void>;
 }
-export type RateLimiterOpts = any;
+export type RateLimiterOpts = import('rate-limiter').RateLimiterOpts;
 export type ServiceParamDict = {
     rateLimiterKey?: string;
     endpoint?: string;
     apiKey?: string;
 };
-import RateLimiter from "./rate-limiter.js";
+import RateLimiter from "rate-limiter";
