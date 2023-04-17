@@ -86,30 +86,22 @@ export async function up(knex) {
 			.toKnexQuery()
 		const netInflowQuery = knex.raw(`(${totalInflowQuery}) - (${totalOutflowQuery})`)
 
-		v.columns([
-			'total_inflow',
-			'total_outflow',
-			'net_inflow',
-			'last_scanned_at',
-			'current_usd_value',
-			'one_day_ago_usd_value',
-			'seven_day_ago_usd_value',
-			'thirty_day_ago_usd_value',
-			'thirty_day_range',
-			'pnl',
-		])
+		const colInfos = [
+			{ name: 'total_inflow', query: 'total_inflow' },
+			{ name: 'total_outflow', query: 'total_outflow' },
+			{ name: 'net_inflow', query: 'net_inflow' },
+			{ name: 'last_scanned_at', query: 'last_scanned_at' },
+			{ name: 'current_usd_value', query: 'current_usd_value' },
+			{ name: 'one_day_ago_usd_value', query: 'one_day_ago_usd_value' },
+			{ name: 'seven_day_ago_usd_value', query: 'seven_day_ago_usd_value' },
+			{ name: 'thirty_day_ago_usd_value', query: 'thirty_day_ago_usd_value' },
+			{ name: 'thirty_day_range', query: 'thirty_day_low || \' - \' || thirty_day_high' },
+			{ name: 'pnl', query: 'round((current_usd_value - net_inflow) / net_inflow * 100, 2)' },
+		]
+
+		v.columns(colInfos.map(({ name }) => name))
 		v.as(knex.raw(`
-			select
-				total_inflow,
-				total_outflow,
-				net_inflow,
-				last_scanned_at,
-				current_usd_value,
-				one_day_ago_usd_value,
-				seven_day_ago_usd_value,
-				thirty_day_ago_usd_value,
-				thirty_day_low || ' - ' || thirty_day_high as thirty_day_range,
-				round((t.current_usd_value - t.net_inflow) / t.net_inflow * 100, 2) || '%' as pnl
+			select ${colInfos.map(({ name, query }) => `(${query}) as ${name}`).join(', ')}
 			from (
 				select
 					(${totalInflowQuery}) as total_inflow,
