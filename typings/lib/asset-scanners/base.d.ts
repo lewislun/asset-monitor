@@ -8,7 +8,7 @@ export default class BaseAssetScanner extends BaseService {
      * @param {ServiceParamDict} [paramDict]
      * @param {RateLimiterOpts} [rateLimitOpts={}]
      */
-    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetInfoMap?: BiMap<any, any>, paramDict?: ServiceParamDict, rateLimitOpts?: any);
+    constructor(priceAggregator: PriceAggregator, chain: types.Chain, assetInfoMap?: BiMap<any, any>, paramDict?: ServiceParamDict, rateLimitOpts?: RateLimiterOpts);
     /** @type {types.Chain} */ chain: types.Chain;
     /** @protected @type {BiMap<types.AssetCode, string>} */ protected assetIdByCode: BiMap<types.AssetCode, string>;
     /** @protected @type {PriceAggregator} */ protected priceAggregator: PriceAggregator;
@@ -27,7 +27,7 @@ export default class BaseAssetScanner extends BaseService {
      */
     protected _query(assetQuery: AssetQuery): Promise<AssetSnapshot[]>;
 }
-export type RateLimiterOpts = import('../utils').RateLimiterOpts;
+export type RateLimiterOpts = import('rate-limiter').RateLimiterOpts;
 export type ServiceParamDict = import('../utils').ServiceParamDict;
 import { BaseService } from "../utils/index.js";
 import * as types from "../types.js";
