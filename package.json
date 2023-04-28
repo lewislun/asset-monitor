@@ -49,7 +49,7 @@
     "npm": "^9.3.1",
     "objection": "^3.0.1",
     "pg": "^8.8.0",
-    "rate-limiter": "github:lewislun/rate-limiter#1.1.1",
+    "rate-limiter": "github:lewislun/rate-limiter#1.2.0",
     "readline-sync": "^1.4.10",
     "suppress-experimental-warnings": "^1.1.3",
     "web3": "^1.8.1",
