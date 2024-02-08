@@ -34,7 +34,7 @@
     "bech32": "^2.0.0",
     "bigint-buffer": "^1.1.5",
     "bn.js": "^5.2.1",
-    "bybit-api": "^3.3.10",
+    "bybit-api": "^3.9.0",
     "chain-registry": "^1.6.1",
     "coingecko-api": "^1.0.10",
     "commander": "^10.0.0",
