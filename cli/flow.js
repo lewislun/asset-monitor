@@ -13,8 +13,9 @@ cmd
 	.option('-T, --time', 'Time of the flow.', undefined)
 	.action(async (amount, { fromGroup, toGroup, time }) => {
 		logger.info(`Storing asset flow...`)
-		const flow = await lib.AssetFlow.recordFlow(fromGroup, toGroup, amount, { time })
-		logger.info(`Asset flow stored - id: ${flow.id}`)
+		const assetMonitor = new lib.AssetMonitor({})
+		const flow = await assetMonitor.recordFlow(fromGroup, toGroup, amount, { time })
+		logger.info(`Asset flow stored - id: ${flow.id}, investedValue: ${flow.invested_value}, actualValue: ${flow.actual_value}`)
 		process.exit(0)
 	})
 
