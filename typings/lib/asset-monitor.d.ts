@@ -6,6 +6,8 @@ export default class AssetMonitor {
     /** @type {Map<string, Map<string, BaseAssetScanner>>} */ assetScannerByChainByType: Map<string, Map<string, BaseAssetScanner>>;
     /** @protected @type {Map<string, BiMap<string, types.AssetCode>>} */ protected assetIdByCodeByChain: Map<string, BiMap<string, types.AssetCode>>;
     /** @protected @type {PriceAggregator} */ protected priceAggregator: PriceAggregator;
+    /** @protected @type {AssetMonitorTelegramBot} */ protected telegramBot: AssetMonitorTelegramBot;
+    /** @protected @type {number[]} */ protected telegramNotiChatIds: number[];
     /**
      * @protected
      * @param {string} path
@@ -13,6 +15,10 @@ export default class AssetMonitor {
      * @returns {types.ScannersConfig | types.QueryConfig}
      */
     protected loadConfig(path: string, secretObj?: object): types.ScannersConfig | types.QueryConfig;
+    /**
+     * @param {string|string[]} content
+     */
+    sendTelegramNoti(content: string | string[]): Promise<void>;
     /**
      * @public
      * @returns {Promise<types.ScanResult>}
@@ -53,3 +59,4 @@ import { BaseAssetScanner } from "./asset-scanners/index.js";
 import { BiMap } from "mnemonist";
 import * as types from "./types.js";
 import PriceAggregator from "./price-aggregator.js";
+import AssetMonitorTelegramBot from "./telegram-bot.js";

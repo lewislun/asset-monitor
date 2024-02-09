@@ -17,7 +17,6 @@ cmd
 				process.exit(1)
 			}
 
-			await lib.refreshMaterializedViews()
 			logger.info(`AssetSnapshotBatch deleted - id: ${id}`)
 			process.exit(0)
 		})
