@@ -15,7 +15,7 @@ cmd
 		logger.info(`Storing asset flow...`)
 		const assetMonitor = new lib.AssetMonitor({})
 		const flow = await assetMonitor.recordFlow(fromGroup, toGroup, amount, { time })
-		logger.info(`Asset flow stored - id: ${flow.id}, investedValue: ${flow.invested_value}, actualValue: ${flow.actual_value}`)
+		logger.info(`Asset flow stored - id: ${flow.id}, investedValue: ${flow.invested_usd_value}, actualValue: ${flow.actual_usd_value}`)
 		process.exit(0)
 	})
 

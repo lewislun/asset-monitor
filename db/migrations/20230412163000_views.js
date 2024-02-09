@@ -1,5 +1,5 @@
 import { Model } from 'objection'
-import { AssetSnapshotBatch, BatchListView, AssetFlow, SummaryView } from '../../lib/models/index.js'
+import { AssetSnapshotBatch, AssetFlow } from '../../lib/models/index.js'
 
 /**
  * @param {import('knex').Knex} knex
@@ -8,7 +8,7 @@ import { AssetSnapshotBatch, BatchListView, AssetFlow, SummaryView } from '../..
 export async function up(knex) {
 	Model.knex(knex)
 
-	await knex.schema.createMaterializedView(BatchListView.tableName, v => {
+	await knex.schema.createMaterializedView('batch_list_view', v => {
 		v.columns(['batch_id', 'scan_started_at', 'time_used_sec', 'usd_value'])
 		v.as(
 			AssetSnapshotBatch.query(knex)
@@ -26,54 +26,47 @@ export async function up(knex) {
 		)
 	})
 
-	await knex.schema.createMaterializedView(SummaryView.tableName, v => {
+	await knex.schema.createMaterializedView('summary_view', v => {
 		// Query for current USD value
-		const currentUsdValueQuery = BatchListView.query(knex)
+		const currentUsdValueQuery = knex('batch_list_view')
 			.select('usd_value')
 			.orderBy('scan_started_at', 'desc')
 			.limit(1)
-			.toKnexQuery()
 
 		// Query for USD value 1 day ago
-		const oneDayAgoUsdValueQuery = BatchListView.query(knex)
+		const oneDayAgoUsdValueQuery = knex('batch_list_view')
 			.select('usd_value')
 			.orderBy('scan_started_at', 'desc')
 			.where('scan_started_at', '<', knex.raw('now() - interval \'1 day\''))
 			.limit(1)
-			.toKnexQuery()
 
 		// Query for USD value 7 days ago
-		const sevenDayAgoUsdValueQuery = BatchListView.query(knex)
+		const sevenDayAgoUsdValueQuery = knex('batch_list_view')
 			.select('usd_value')
 			.orderBy('scan_started_at', 'desc')
 			.where('scan_started_at', '<', knex.raw('now() - interval \'7 day\''))
 			.limit(1)
-			.toKnexQuery()
 
 		// Query for USD value 30 days ago
-		const thirtyAgoUsdValueQuery = BatchListView.query(knex)
+		const thirtyAgoUsdValueQuery = knex('batch_list_view')
 			.select('usd_value')
 			.orderBy('scan_started_at', 'desc')
 			.where('scan_started_at', '<', knex.raw('now() - interval \'30 day\''))
 			.limit(1)
-			.toKnexQuery()
 	
 		// Query for last scanned at
-		const lastScannedAtQuery = BatchListView.query(knex)
+		const lastScannedAtQuery = knex('batch_list_view')
 			.max('scan_started_at')
-			.toKnexQuery()
 
 		// Query for 30-day high
-		const thirtyDayHighQuery = BatchListView.query(knex)
+		const thirtyDayHighQuery = knex('batch_list_view')
 			.max('usd_value')
 			.where('scan_started_at', '>', knex.raw('now() - interval \'30 day\''))
-			.toKnexQuery()
 		
 		// Query for 30-day low
-		const thirtyDayLowQuery = BatchListView.query(knex)
+		const thirtyDayLowQuery = knex('batch_list_view')
 			.min('usd_value')
 			.where('scan_started_at', '>', knex.raw('now() - interval \'30 day\''))
-			.toKnexQuery()
 
 		// Query for total inflow, outflow, and net inflow
 		const totalInflowQuery = AssetFlow.query(knex)
@@ -126,6 +119,6 @@ export async function up(knex) {
 export async function down(knex) {
 	Model.knex(knex)
 
-	await knex.schema.dropMaterializedViewIfExists(SummaryView.tableName)
-	await knex.schema.dropMaterializedViewIfExists(BatchListView.tableName)
+	await knex.schema.dropMaterializedViewIfExists('summary_view')
+	await knex.schema.dropMaterializedViewIfExists('batch_list_view')
 }
