@@ -35,7 +35,7 @@
     "bigint-buffer": "^1.1.5",
     "bn.js": "^5.2.1",
     "bybit-api": "^3.9.0",
-    "chain-registry": "^1.6.1",
+    "chain-registry": "^1.27.0",
     "coingecko-api": "^1.0.10",
     "commander": "^10.0.0",
     "csv": "^6.2.7",

@@ -129,6 +129,11 @@ assetScanners:
     params:
       assetCode: ATOM
       endpoint: https://cosmos-rpc.polkachu.com
+  # Dymension
+  # - type: cosmos-native
+  #   chain: dymension
+  #   params:
+  #     endpoint: https://dymension-rpc.publicnode.com:443
   # Ethereum
   - type: ethereum-native
     chain: ethereum
