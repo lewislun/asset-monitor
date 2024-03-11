@@ -1,12 +1,6 @@
 import { Model } from 'objection'
+import { createOnUpdateTriggerSql } from '../helpers.js'
 import { AssetQuery, AssetGroup, AssetSnapshot } from '../../lib/models/index.js'
-
-const getOnUpdateTrigger = (tableName) => `
-	CREATE TRIGGER ${tableName}_updated_at
-	BEFORE UPDATE ON ${tableName}
-	FOR EACH ROW
-	EXECUTE PROCEDURE on_update_timestamp();
-`
 
 /**
  * @param {import('knex').Knex} knex
@@ -32,7 +26,7 @@ export async function up(knex) {
 			.references('id')
 			.inTable(AssetGroup.tableName)
 	})
-	await knex.raw(getOnUpdateTrigger(AssetQuery.tableName))
+	await knex.raw(createOnUpdateTriggerSql(AssetQuery.tableName))
 
 	// add is_default column to asset group table and set default group to default
 	await knex.schema.alterTable(AssetGroup.tableName, t => {

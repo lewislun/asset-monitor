@@ -7,5 +7,6 @@ export function setLogLevel(level: string): void;
  * @returns {winston.Logger}
  */
 export function createLogger(moduleName?: string): winston.Logger;
+export function setLoggerTelegramBot(bot: any, chatIds: any): void;
 export default logger;
 declare const logger: winston.Logger;

@@ -186,7 +186,8 @@ assetScanners:
   - type: cosmos-native
     chain: secret-network
     params:
-      endpoint: https://rpc.secret.express
+      # endpoint: https://rpc.secret.express
+      endpoint: https://secretnetwork-rpc.stakely.io
   # Sifchain
   - type: cosmos-native
     chain: sifchain
