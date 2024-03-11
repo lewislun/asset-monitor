@@ -1,6 +1,6 @@
 {
   "name": "asset-monitor",
-  "version": "1.12.6",
+  "version": "1.12.7",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -17,7 +17,7 @@
   "typings": "./typings/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@blockfrost/blockfrost-js": "^5.2.0",
+    "@blockfrost/blockfrost-js": "^5.5.0",
     "@cosmjs/cosmwasm-stargate": "^0.29.5",
     "@cosmjs/stargate": "^0.29.5",
     "@cosmjs/tendermint-rpc": "^0.29.5",
@@ -35,7 +35,7 @@
     "bigint-buffer": "^1.1.5",
     "bn.js": "^5.2.1",
     "bybit-api": "^3.9.0",
-    "chain-registry": "^1.6.1",
+    "chain-registry": "^1.27.0",
     "coingecko-api": "^1.0.10",
     "commander": "^10.0.0",
     "csv": "^6.2.7",
