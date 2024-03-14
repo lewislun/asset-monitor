@@ -21,9 +21,29 @@ export default class AssetMonitor {
     sendTelegramNoti(content: string | string[]): Promise<void>;
     /**
      * @public
+     * @param {object} [opts={}]
+     * @param {number[]} [opts.groupIds=[]]
      * @returns {Promise<types.ScanResult>}
      */
-    public scan(): Promise<types.ScanResult>;
+    public scan(opts?: {
+        groupIds?: number[];
+    }): Promise<types.ScanResult>;
+    /**
+     * @public
+     * @param {types.AssetGroupSpecifier} fromGroupSpecifier
+     * @param {types.AssetGroupSpecifier} toGroupSpecifier
+     * @param {Decimal.Value} value
+     * @param {object} [opts={}]
+     * @param {Date} [opts.time]
+     * @param {Transaction} [opts.trx]
+     * @param {bool} [opts.createGroup=false] Create group if not exist
+     * @returns {Promise<AssetFlow>}
+     */
+    public recordFlow(fromGroupSpecifier: types.AssetGroupSpecifier, toGroupSpecifier: types.AssetGroupSpecifier, value: Decimal.Value, opts?: {
+        time?: Date;
+        trx?: Transaction;
+        createGroup?: bool;
+    }): Promise<AssetFlow>;
     /**
      * @public
      * @param {string} [cronSchedule='0 * * * *']
@@ -60,3 +80,5 @@ import { BiMap } from "mnemonist";
 import * as types from "./types.js";
 import PriceAggregator from "./price-aggregator.js";
 import AssetMonitorTelegramBot from "./telegram-bot.js";
+import Decimal from "decimal.js";
+import { AssetFlow } from "./models/index.js";

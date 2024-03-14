@@ -6,24 +6,6 @@ export default class AssetFlow extends BaseModel {
     static get jsonSchema(): import("objection").JSONSchema;
     /** @type {import('objection').RelationMappings} */
     static get relationMappings(): import("objection").RelationMappings;
-    /**
-     * @public
-     * @param {types.AssetGroupSpecifier} fromGroupSpecifier
-     * @param {types.AssetGroupSpecifier} toGroupSpecifier
-     * @param {Decimal.Value} usdValue
-     * @param {object} [opts={}]
-     * @param {Date} [opts.time]
-     * @param {Transaction} [opts.trx]
-     * @param {bool} [opts.createGroup=false] Create group if not exist
-     * @returns {Promise<AssetFlow>}
-     */
-    public static recordFlow(fromGroupSpecifier: types.AssetGroupSpecifier, toGroupSpecifier: types.AssetGroupSpecifier, usdValue: Decimal.Value, opts?: {
-        time?: Date;
-        trx?: Transaction;
-        createGroup?: bool;
-    }): Promise<AssetFlow>;
 }
 export type Transaction = import('objection').Transaction;
 import BaseModel from "./base.js";
-import * as types from "../types.js";
-import Decimal from "decimal.js";

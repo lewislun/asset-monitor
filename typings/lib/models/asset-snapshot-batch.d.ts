@@ -1,3 +1,6 @@
+/**
+ * @typedef {import('objection').Transaction} Transaction
+ */
 export default class AssetSnapshotBatch extends BaseModel {
     /** @type {import('objection').JSONSchema} */
     static get jsonSchema(): import("objection").JSONSchema;
@@ -12,7 +15,16 @@ export default class AssetSnapshotBatch extends BaseModel {
     static store(scanResult?: types.ScanResult, opts?: {
         trx?: Transaction;
     }): Promise<AssetSnapshotBatch>;
+    /**
+     * @returns {Promise<AssetSnapshotBatch>}
+     */
+    static getLatestBatch(): Promise<AssetSnapshotBatch>;
+    /**
+     * @returns {Promise<Decimal>}
+     */
+    getTotalValue(): Promise<Decimal>;
 }
 export type Transaction = import('objection').Transaction;
 import BaseModel from "./base.js";
+import { Decimal } from "decimal.js";
 import * as types from "../types.js";

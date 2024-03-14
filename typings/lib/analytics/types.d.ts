@@ -13,6 +13,7 @@ export type TotalValueData = {
     state?: enums.AssetState;
     tagValue?: string;
     usdValue: Decimal;
+    percentage: Decimal;
 };
 import Decimal from "decimal.js";
 import * as types from "../types.js";
